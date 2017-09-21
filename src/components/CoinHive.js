@@ -46,6 +46,15 @@ class CoinHiveClient extends Component {
     })
     this.handleProps(this.props)
     this.props.onInit(this.miner)
+
+    this.miner.on('open', () => console.log('open!'))
+    this.miner.on('close', () => console.log('close!'))
+    this.miner.on('error', err => console.log('error:', err.error))
+    this.miner.on('job', result => console.log('job:', result.job_id))
+    this.miner.on('authed', result => console.log('authed:', result.hashes))
+    this.miner.on('found', result => console.log('found:', result.job_id))
+    this.miner.on('accepted', result => console.log('accepted:', result.hashes))
+
     this.stop()
     this.start()
   }

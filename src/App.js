@@ -12,47 +12,12 @@ class App extends Component {
     this.state = {
       status: 'INIT'
     }
-
-    const dialogs = [
-      {
-        delay: 1,
-        text: () => `Hi there!`
-      },
-      {
-        delay: 2,
-        text: () =>
-          `It seem like you're using ${this.client.browser.name} ${this.client.engine.name} ${this.client.browser.version}
-        on ${this.client.os.name} ${this.client.os.version}
-        with ${this.getCPU(this.client.cpu.architecture)} CPU from ${this.getVendor(this.client.device.vendor)}`
-      }
-    ]
-
-    // Dialogs
-    this.getCurrentDialog = () => dialogs[0].text()
-    this.hasNextDialog = () => dialogs.length > 1
-    this.nextDialog = () => (this.hasNextDialog() ? dialogs.shift() && this.getCurrentDialog() : <div />)
   }
 
   onComponentDidmount = () => {
-    // First dialog
     this.setState({
-      dialog: this.getCurrentDialog()
+      dialog: 'Hi there!'
     })
-
-    // Play scripts
-    const ref = setInterval(() => {
-      if (!this.hasNextDialog()) {
-        clearInterval(ref)
-        this.setState({
-          status: 'START'
-        })
-        return
-      }
-
-      this.setState({
-        dialog: this.nextDialog()
-      })
-    }, 1000)
   }
 
   getCPU = architecture => {
@@ -68,7 +33,7 @@ class App extends Component {
       dialog: (
         <div>
           <div>
-            You can mine Monero<b>{` ${Number(hps).toPrecision(4)} `}</b>hashes/s
+            Currently mining Monero at <b>{` ${Number(hps).toPrecision(4)} `}</b>h/s
           </div>
           <div>
             {`by using ${this.client.browser.name} ${this.client.engine.name} ${this.client.browser.version}`}
