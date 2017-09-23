@@ -1,5 +1,5 @@
 # coin-hive-mining-benchmark
-CoinHive mining benchmark
+CoinHive Mining Benchmark
 
 ```shell
 yarn install

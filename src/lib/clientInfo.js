@@ -1,6 +1,6 @@
 import UAParser from 'ua-parser-js'
 
-class Client {
+class clientInfo {
   constructor () {
     this.ua = new UAParser()
   }
@@ -24,4 +24,4 @@ class Client {
   }
 }
 
-export default Client
+export default clientInfo
