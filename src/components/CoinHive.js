@@ -16,12 +16,20 @@ class CoinHiveClient extends Component {
     siteKey: 'QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK',
     onInit: miner => {},
     onStart: miner => {},
-    onStop: miner => {}
+    onStop: miner => {},
+    onOpen: miner => {},
+    onClose: miner => {},
+    onError: miner => {},
+    onJob: miner => {},
+    onAuthed: miner => {},
+    onFound: miner => {},
+    onAccepted: miner => {}
   }
 
   start () {
     if (this.miner) {
       this.miner.start()
+      console.log(this.miner.getAutoThreadsEnabled())
       this._status = 'START'
       this.props.onStart(this.miner)
     }
@@ -47,13 +55,13 @@ class CoinHiveClient extends Component {
     this.handleProps(this.props)
     this.props.onInit(this.miner)
 
-    this.miner.on('open', () => console.log('open!'))
-    this.miner.on('close', () => console.log('close!'))
-    this.miner.on('error', err => console.log('error:', err.error))
-    this.miner.on('job', result => console.log('job:', result.job_id))
-    this.miner.on('authed', result => console.log('authed:', result.hashes))
-    this.miner.on('found', result => console.log('found:', result.job_id))
-    this.miner.on('accepted', result => console.log('accepted:', result.hashes))
+    this.miner.on('open', () => this.props.onOpen())
+    this.miner.on('close', () => this.props.onClose())
+    this.miner.on('error', err => this.props.onError(err.error))
+    this.miner.on('job', result => this.props.onJob(result))
+    this.miner.on('authed', result => this.props.onAuthed(result))
+    this.miner.on('found', result => this.props.onFound(result))
+    this.miner.on('accepted', result => this.props.onAccepted(result))
 
     this.stop()
     this.start()
@@ -83,6 +91,13 @@ CoinHiveClient.PropTypes = {
   onInit: PropTypes.func,
   onStart: PropTypes.func,
   onStop: PropTypes.func,
+  onOpen: PropTypes.func,
+  onClose: PropTypes.func,
+  onError: PropTypes.func,
+  onJob: PropTypes.func,
+  onAuthed: PropTypes.func,
+  onFound: PropTypes.func,
+  onAccepted: PropTypes.func,
   userName: PropTypes.string,
   status: PropTypes.string
 }
