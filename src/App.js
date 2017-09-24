@@ -85,7 +85,7 @@ class App extends Component {
     const hps = '32.12'
     const { client } = this
 
-    let y = 100
+    let y = 32
 
     // Canvas
     const draw = new SVG('320', '320')
@@ -96,7 +96,7 @@ class App extends Component {
     // Dialog
     draw.text({
       x: 320 / 2,
-      y,
+      y: (y = y + 32),
       fontSize: 42,
       fill: '#EA6B66',
       textAnchor: 'end',
@@ -118,7 +118,7 @@ class App extends Component {
       x1: 320 / 2 + 6,
       y1: y + 6,
       x2: 320 / 2 + 16,
-      y2: 120 + 16,
+      y2: y + 16,
       stroke: 'gray'
     })
 
@@ -192,8 +192,25 @@ class App extends Component {
         thread: 4,
         name: 'Edge',
         version: '60.0.3112.113'
+      },
+      {
+        min: 5.54,
+        max: 6.98,
+        thread: 4,
+        name: 'Opera',
+        version: '1.2.1'
       }
     ])
+
+    // Copy
+    draw.text({
+      x: 320 / 2,
+      y: 320 - 32,
+      fontSize: 9,
+      fill: 'lightgray',
+      textAnchor: 'middle',
+      text: 'COPYRIGHT 2017 RABBOT.IO'
+    })
 
     return (
       <Containerz>
