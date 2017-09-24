@@ -16,6 +16,7 @@ const decorateRanking = (draw, ox, oy, data) => {
     const text = `${item.thread} x ${item.name} ${item.version}`
     draw.rect({ x: ox - widthMax, y, width: widthMax, height: 6, fill: fills[1] })
     draw.rect({ x: ox - widthMin, y, width: widthMin, height: 6, fill: fills[0] })
+    draw.text({ x: ox - widthMax - 5 * String(item.max).length, y: y + 6, text: item.max, fill: 'lightgray' })
     draw.text({ x: ox + 3 + 3 + 3, y: y + 6, text })
   })
 }

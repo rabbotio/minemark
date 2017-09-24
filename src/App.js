@@ -7,6 +7,7 @@ import SVG from './lib/svg-jsx'
 // Components
 import CoinHive from './components/CoinHive'
 import { decorateRanking } from './components/Ranking'
+import { decorateGimmick } from './components/Gimmick'
 
 // Styles
 import styled from 'styled-components'
@@ -88,6 +89,9 @@ class App extends Component {
 
     // Canvas
     const draw = new SVG('320', '320')
+
+    // Gimmick
+    decorateGimmick(draw, 320 / 2, 320 / 2)
 
     // Dialog
     draw.text({

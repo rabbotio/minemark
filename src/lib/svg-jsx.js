@@ -45,14 +45,14 @@ export default class SVG {
   rect = props => {
     const _props = Object.assign({ key: ++this.index, x: 0, y: 0, width: 100, height: 100, fill: '#000000' }, props)
     const _element = <rect {..._props} />
-    this.elements && this.elements.push(_element)
+    this.elements.push(_element)
     return _element
   }
 
   line = props => {
     const _props = Object.assign({ key: ++this.index, x1: 0, y1: 0, x2: 100, y2: 100, stroke: '#000000', strokeWidth: 1 }, props)
     const _element = <line {..._props} />
-    this.elements && this.elements.push(_element)
+    this.elements.push(_element)
     return _element
   }
 
