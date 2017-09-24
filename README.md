@@ -5,3 +5,9 @@ CoinHive Mining Benchmark
 yarn install
 yarn start
 ```
+
+## TODO
+- [ ] Animation
+- [ ] Firebase read
+- [ ] Firebase write
+- [ ] Google Analytics
