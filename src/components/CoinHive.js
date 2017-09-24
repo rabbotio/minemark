@@ -27,9 +27,9 @@ class CoinHiveClient extends Component {
   }
 
   start () {
+    return
     if (this.miner) {
       this.miner.start()
-      console.log(this.miner.getAutoThreadsEnabled())
       this._status = 'START'
       this.props.onStart(this.miner)
     }

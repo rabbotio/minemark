@@ -6,10 +6,7 @@ import SVG from './lib/svg-jsx'
 
 // Components
 import CoinHive from './components/CoinHive'
-import Dialog from './components/Dialog'
-import MiniConsole from './components/MiniConsole'
-import Presenter from './components/Presenter'
-import ClientInfoView from './components/ClientInfoView'
+import { decorateRanking } from './components/Ranking'
 
 // Styles
 import styled from 'styled-components'
@@ -29,7 +26,6 @@ text-align: center;
 color: gray;
 line-height: 0px;
 `
-
 class App extends Component {
   constructor (props) {
     super(props)
@@ -86,7 +82,6 @@ class App extends Component {
 
   render () {
     const hps = '32.12'
-    const tspanWithFill = text => <tspan fill='#2ecc71'>{text}</tspan>
     const { client } = this
 
     let y = 100
@@ -163,6 +158,38 @@ class App extends Component {
         draw.tspan({ fill: '#2ecc71', text: client.device.vendor })
       ]
     })
+
+    // Ranking
+    decorateRanking(draw, 320 / 2, (y = y + 16), [
+      {
+        min: 21.27,
+        max: 32.44,
+        thread: 4,
+        name: 'Chrome',
+        version: '60.0.3112.113'
+      },
+      {
+        min: 19.61,
+        max: 24.23,
+        thread: 4,
+        name: 'Firefox',
+        version: '60.0.3112.113'
+      },
+      {
+        min: 15.77,
+        max: 18.45,
+        thread: 4,
+        name: 'Safari',
+        version: '60.0.3112.113'
+      },
+      {
+        min: 7.54,
+        max: 8.98,
+        thread: 4,
+        name: 'Edge',
+        version: '60.0.3112.113'
+      }
+    ])
 
     return (
       <Containerz>
