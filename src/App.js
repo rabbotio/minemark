@@ -37,19 +37,17 @@ class App extends Component {
     this._frameId = null
 
     this.client = new ClientInfo().getData()
+    this.hps = 0
+    this._hps = 0
+
+    this.carSpeeds = [1, 2, 3]
 
     this.state = {
-      dialog: (
-        <div>
-          <H1Pz>{` ${Number(0).toPrecision(4)} `}</H1Pz>
-          <H4Pz>hashed / second</H4Pz>
-        </div>
-      ),
       output: 'Initializing...'
     }
   }
 
-  onInit = miner =>
+  onInit = miner => {
     setInterval(
       () =>
         miner &&
@@ -60,16 +58,11 @@ class App extends Component {
         }),
       1000
     )
+  }
 
   onMining = ({ hashesPerSecond = 0, totalHashes = 0, acceptedHashes = 0 }) => {
-    this.setState({
-      dialog: (
-        <div>
-          <H1Pz>{` ${Number(hashesPerSecond).toPrecision(4)} `}</H1Pz>
-          <H4Pz>hashed / second</H4Pz>
-        </div>
-      )
-    })
+    this.hps = hashesPerSecond
+    console.log('onMining:', this.hps)
   }
 
   onAccepted = () => {
@@ -102,24 +95,31 @@ class App extends Component {
 
   loop = () => {
     // Move car
-    const car = this.svg.querySelector('g image')
-    const carX = 2 * time % 320
-    const carY = 320 / 2 - 40 - Math.random() * 32
-    car.setAttribute('x', carX)
+    ;[0, 1, 2].forEach(index => {
+      const car = this.svg.querySelector(`g image#car${index}`)
+      const carX = this.carSpeeds[index] * time % 320
+      const carY = 320 / 2 - 40 - Math.random() * 32
+      car.setAttribute('x', carX)
 
-    // Random start Y
-    if (carX === 0) car.setAttribute('y', carY)
+      // Random start Y
+      if (carX === 0) {
+        car.setAttribute('y', carY)
+        this.carSpeeds = [2 * Math.random(), 2 * Math.random(), 2 * Math.random()]
+      }
+    })
+
+    // HPS
+    const hps = this.svg.querySelector('g text#hps')
+    // console.log(this.hps)
+    this._hps += (this.hps - this._hps) / 8
+    hps.innerHTML = Number(this._hps).toPrecision(4)
 
     // Next
     this.frameId = window.requestAnimationFrame(this.loop)
     ++time
   }
 
-  stopLoop = () => {
-    window.cancelAnimationFrame(this._frameId)
-    // Note: no need to worry if the loop has already been cancelled
-    // cancelAnimationFrame() won't throw an error
-  }
+  stopLoop = () => window.cancelAnimationFrame(this._frameId)
 
   render () {
     const hps = '32.12'
@@ -137,6 +137,7 @@ class App extends Component {
     draw.text({
       x: 320 / 2,
       y: (y = y + 32),
+      id: 'hps',
       fontSize: 42,
       fill: '#EA6B66',
       textAnchor: 'end',
@@ -228,7 +229,7 @@ class App extends Component {
         <CoinHive
           status={this.state.status}
           siteKey='QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'
-          onInit={() => this.onInit()}
+          onInit={miner => this.onInit(miner)}
           onAccepted={() => this.onAccepted()}
           onFound={() => this.onFound()}
         />
