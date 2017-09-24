@@ -7,7 +7,11 @@ yarn start
 ```
 
 ## TODO
-- [ ] Animation
+- [x] Animation
+- [ ] Console log animation
+- [ ] Capture
+- [ ] Share Facebook
+- [ ] Share Twitter
 - [ ] Firebase read
 - [ ] Firebase write
 - [ ] Google Analytics

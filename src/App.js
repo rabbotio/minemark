@@ -28,9 +28,13 @@ text-align: center;
 color: gray;
 line-height: 0px;
 `
+
+let time = 0
 class App extends Component {
   constructor (props) {
     super(props)
+
+    this._frameId = null
 
     this.client = new ClientInfo().getData()
 
@@ -82,6 +86,41 @@ class App extends Component {
     })
   }
 
+  componentDidMount = () => {
+    this.startLoop()
+  }
+
+  componentWillUnmount = () => {
+    this.stopLoop()
+  }
+
+  startLoop = () => {
+    if (!this._frameId) {
+      this._frameId = window.requestAnimationFrame(this.loop)
+    }
+  }
+
+  loop = () => {
+    // Move car
+    const car = this.svg.querySelector('g image')
+    const carX = 2 * time % 320
+    const carY = 320 / 2 - 40 - Math.random() * 32
+    car.setAttribute('x', carX)
+
+    // Random start Y
+    if (carX === 0) car.setAttribute('y', carY)
+
+    // Next
+    this.frameId = window.requestAnimationFrame(this.loop)
+    ++time
+  }
+
+  stopLoop = () => {
+    window.cancelAnimationFrame(this._frameId)
+    // Note: no need to worry if the loop has already been cancelled
+    // cancelAnimationFrame() won't throw an error
+  }
+
   render () {
     const hps = '32.12'
     const { client } = this
@@ -123,7 +162,7 @@ class App extends Component {
       stroke: 'gray'
     })
 
-    // image
+    // kat
     draw.image({
       x: 320 / 2 + 8,
       y,
@@ -185,7 +224,7 @@ class App extends Component {
 
     return (
       <Containerz>
-        {draw.jsx()}
+        {draw.jsx(this)}
         <CoinHive
           status={this.state.status}
           siteKey='QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'

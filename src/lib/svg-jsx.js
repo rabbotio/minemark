@@ -63,9 +63,17 @@ export default class SVG {
     return _element
   }
 
-  jsx = () => (
+  jsx = _this => (
     <div>
-      <svg width={this.w} height={this.h}><g>{this.elements}</g></svg>
+      <svg
+        ref={svg => {
+          _this && (_this.svg = svg)
+        }}
+        width={this.w}
+        height={this.h}
+      >
+        <g>{this.elements}</g>
+      </svg>
     </div>
   )
 }
