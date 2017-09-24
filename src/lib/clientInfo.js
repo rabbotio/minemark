@@ -10,7 +10,7 @@ class clientInfo {
 
     // Patch
     result.cpu.architecture = this.getCPU(result.cpu.architecture)
-    result.device.vendor = this.getCPU(result.device.vendor)
+    result.device.vendor = this.getVendor(result.device.vendor)
 
     return result
   }
