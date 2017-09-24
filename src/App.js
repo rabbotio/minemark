@@ -6,8 +6,9 @@ import SVG from './lib/svg-jsx'
 
 // Components
 import CoinHive from './components/CoinHive'
-import { decorateRanking } from './components/Ranking'
 import { decorateGimmick } from './components/Gimmick'
+import { decorateClient } from './components/ClientInfo'
+import { decorateRanking } from './components/Ranking'
 
 // Styles
 import styled from 'styled-components'
@@ -131,40 +132,10 @@ class App extends Component {
       href: './kat.png'
     })
 
-    // Client
-    draw.text({
-      x: 320 / 2,
-      y: (y = y + 6 + 64 + 20),
-      fontSize: 14,
-      fill: 'gray',
-      textAnchor: 'middle',
-      text: `Mining `,
-      children: [
-        draw.tspan({ fill: '#e67e22', text: `Monero` }),
-        draw.tspan(` by `),
-        draw.tspan({ fill: '#2ecc71', text: `${client.browser.name} ${client.browser.version}` })
-      ]
-    })
-
-    // Client
-    draw.text({
-      x: 320 / 2,
-      y: (y = y + 14 + 3),
-      fontSize: 14,
-      fill: 'gray',
-      textAnchor: 'middle',
-      text: `on `,
-      children: [
-        draw.tspan({ fill: '#2ecc71', text: `${client.os.name} ${client.os.version}` }),
-        draw.tspan(` with `),
-        draw.tspan({ fill: '#2ecc71', text: client.cpu.architecture }),
-        draw.tspan(` from `),
-        draw.tspan({ fill: '#2ecc71', text: client.device.vendor })
-      ]
-    })
+    y = decorateClient(draw, 320 / 2, y, client)
 
     // Ranking
-    decorateRanking(draw, 320 / 2, (y = y + 16), [
+    y = decorateRanking(draw, 320 / 2, (y = y + 16), [
       {
         min: 21.27,
         max: 32.44,
@@ -205,11 +176,11 @@ class App extends Component {
     // Copy
     draw.text({
       x: 320 / 2,
-      y: 320 - 32,
+      y: 320 - 24,
       fontSize: 9,
       fill: 'lightgray',
       textAnchor: 'middle',
-      text: 'COPYRIGHT 2017 RABBOT.IO'
+      text: 'COPYRIGHT 2017 ❤ RABBOT.IO'
     })
 
     return (

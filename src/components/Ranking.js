@@ -9,10 +9,11 @@ const colors = {
 const decorateRanking = (draw, ox, oy, data) => {
   const maximum = data.reduce((p, c) => (c > p ? c : p)).max
 
-  return data.forEach((item, index) => {
+  let y = oy
+  data.forEach((item, index) => {
     const widthMin = 100 * item.min / maximum
     const widthMax = 100 * item.max / maximum
-    const y = oy + index * 6 * 2
+    y = oy + index * 6 * 2
     const fills = colors[item.name.toLowerCase()] || colors.any
 
     const text = `${item.thread} x ${item.name} ${item.version}`
@@ -21,5 +22,7 @@ const decorateRanking = (draw, ox, oy, data) => {
     draw.text({ x: ox - widthMax - 5 * String(item.max).length, y: y + 6, text: item.max, fill: 'lightgray' })
     draw.text({ x: ox + 3 + 3 + 3, y: y + 6, text })
   })
+
+  return y
 }
 export { decorateRanking }
