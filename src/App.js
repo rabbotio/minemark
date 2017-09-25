@@ -10,6 +10,7 @@ import { decorateMiniConsole } from './components/MiniConsole'
 import { decorateGimmick } from './components/Gimmick'
 import { decorateClient } from './components/ClientInfo'
 import { decorateRanking } from './components/Ranking'
+import { Buttonz, onShare } from './components/Share'
 
 // Styles
 import styled from 'styled-components'
@@ -67,6 +68,9 @@ class App extends Component {
   onError = err => this.updateConsole(`🔥 Error! ${err}`)
 
   componentDidMount = () => {
+    this.svg = document.getElementById('svg')
+    console.log(this.svg)
+
     // Console
     this.consoleTexts = ['', '', '', '', '']
     this.consoles = [0, 1, 2, 3, 4].map(index => this.svg.querySelector(`g text#line${index}`))
@@ -236,15 +240,20 @@ class App extends Component {
 
     return (
       <Containerz>
-        {draw.jsx(this)}
-        <CoinHive
-          status={this.state.status}
-          siteKey='QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'
-          onInit={miner => this.onInit(miner)}
-          onFound={() => this.onFound()}
-          onAccepted={() => this.onAccepted()}
-          onError={err => this.onError(err)}
-        />
+        <Containerz>
+          {draw.jsx()}
+          <CoinHive
+            status={this.state.status}
+            siteKey='QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'
+            onInit={miner => this.onInit(miner)}
+            onFound={() => this.onFound()}
+            onAccepted={() => this.onAccepted()}
+            onError={err => this.onError(err)}
+          />
+        </Containerz>
+        <Buttonz onClick={() => onShare(this.svg)}>
+          SHARE
+        </Buttonz>
       </Containerz>
     )
   }
