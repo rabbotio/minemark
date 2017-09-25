@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "canvg-browser": "^1.0.0",
     "load-script": "^1.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

@@ -9,7 +9,7 @@ yarn start
 ## TODO
 - [x] Animation
 - [x] Console log animation
-- [ ] Capture
+- [x] Capture
 - [ ] Share Facebook
 - [ ] Share Twitter
 - [ ] Firebase read

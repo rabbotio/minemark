@@ -1266,6 +1266,14 @@ caniuse-lite@^1.0.30000697, caniuse-lite@^1.0.30000718:
   version "1.0.30000733"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000733.tgz#ebfc48254117cc0c66197a4536cb4397a6cfbccd"
 
+canvg-browser@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/canvg-browser/-/canvg-browser-1.0.0.tgz#c63cb5a9e7a0c70698a9c87783473e60915ea483"
+  dependencies:
+    rgbcolor "0.0.4"
+    stackblur "^1.0.0"
+    xmldom "^0.1.22"
+
 capture-stack-trace@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
@@ -2703,10 +2711,6 @@ get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
 
-get-canvas-context@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/get-canvas-context/-/get-canvas-context-1.0.2.tgz#d6e7b50bc4e4c86357cd39f22647a84b73601e93"
-
 get-stdin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
@@ -3851,10 +3855,6 @@ levn@^0.3.0, levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
-
-load-img@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/load-img/-/load-img-1.0.0.tgz#09537449893c32a8709074645566c4c5faa9ac26"
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -5447,6 +5447,10 @@ resumer@~0.0.0:
   dependencies:
     through "~2.3.4"
 
+rgbcolor@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/rgbcolor/-/rgbcolor-0.0.4.tgz#ca04615a2d03eb61e49f2a75f239a46fb77d8b1d"
+
 right-align@^0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/right-align/-/right-align-0.1.3.tgz#61339b722fe6a3515689210d24e14c96148613ef"
@@ -5749,6 +5753,10 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
+stackblur@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stackblur/-/stackblur-1.0.0.tgz#b407a7e05c93b08d66883bb808d7cba3a503f12f"
+
 "statuses@>= 1.3.1 < 2", statuses@~1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
@@ -5893,12 +5901,6 @@ supports-color@^4.0.0, supports-color@^4.2.1, supports-color@^4.4.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-4.4.0.tgz#883f7ddabc165142b2a61427f3352ded195d1a3e"
   dependencies:
     has-flag "^2.0.0"
-
-svg-to-image@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/svg-to-image/-/svg-to-image-1.1.3.tgz#d6ff4d883ca8f7e3f792b42b2328b15cbe2fb0f3"
-  dependencies:
-    load-img "^1.0.0"
 
 svgo@^0.7.0:
   version "0.7.2"
@@ -6517,6 +6519,10 @@ xml-char-classes@^1.0.0:
 xml-name-validator@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-2.0.1.tgz#4d8b8f1eccd3419aa362061becef515e1e559635"
+
+xmldom@^0.1.22:
+  version "0.1.27"
+  resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
 
 xtend@^4.0.0, xtend@^4.0.1:
   version "4.0.1"

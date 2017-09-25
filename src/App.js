@@ -69,7 +69,6 @@ class App extends Component {
 
   componentDidMount = () => {
     this.svg = document.getElementById('svg')
-    console.log(this.svg)
 
     // Console
     this.consoleTexts = ['', '', '', '', '']
@@ -119,7 +118,6 @@ class App extends Component {
 
     // HPS
     const hps = this.svg.querySelector('g text#hps')
-    // console.log(this.hps)
     this._hps += (this.hps - this._hps) / 8
     hps.innerHTML = Number(this._hps).toPrecision(4)
 
@@ -233,7 +231,7 @@ class App extends Component {
       x: 320 / 2,
       y: 320 - 24,
       fontSize: 9,
-      fill: 'lightgray',
+      fill: 'gray',
       textAnchor: 'middle',
       text: 'COPYRIGHT 2017 ❤ RABBOT.IO'
     })
@@ -254,6 +252,7 @@ class App extends Component {
         <Buttonz onClick={() => onShare(this.svg)}>
           SHARE
         </Buttonz>
+        <canvas id='canvas' width='640' height='640' style={{ display: 'none' }} />
       </Containerz>
     )
   }
