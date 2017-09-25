@@ -8,7 +8,7 @@ yarn start
 
 ## TODO
 - [x] Animation
-- [ ] Console log animation
+- [x] Console log animation
 - [ ] Capture
 - [ ] Share Facebook
 - [ ] Share Twitter

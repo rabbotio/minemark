@@ -6,6 +6,7 @@ import SVG from './lib/svg-jsx'
 
 // Components
 import CoinHive from './components/CoinHive'
+import { decorateMiniConsole } from './components/MiniConsole'
 import { decorateGimmick } from './components/Gimmick'
 import { decorateClient } from './components/ClientInfo'
 import { decorateRanking } from './components/Ranking'
@@ -15,18 +16,6 @@ import styled from 'styled-components'
 
 const Containerz = styled.div`
   text-align: center
-`
-const H1Pz = styled.h1`
-font-size: 3.2em;
-text-align: center;
-color: #EA6B66;
-line-height: 0px;
-`
-const H4Pz = styled.p`
-font-size: 1.1em;
-text-align: center;
-color: gray;
-line-height: 0px;
 `
 
 let time = 0
@@ -43,7 +32,7 @@ class App extends Component {
     this.carSpeeds = [1, 2, 3]
 
     this.state = {
-      output: 'Initializing...'
+      status: `INIT`
     }
   }
 
@@ -60,26 +49,29 @@ class App extends Component {
     )
   }
 
+  updateConsole = text => {
+    if (text === this.consoleTexts[0]) return
+    this.consoleTexts.unshift(text)
+    this.consoleTexts.pop()
+    this.consoles.forEach((line, index) => (line.innerHTML = this.consoleTexts[index]))
+  }
+
   onMining = ({ hashesPerSecond = 0, totalHashes = 0, acceptedHashes = 0 }) => {
     this.hps = hashesPerSecond
-    console.log('onMining:', this.hps)
+    this.updateConsole(`⛏ Mining...${Number(this.hps).toPrecision(8)}`)
   }
 
-  onAccepted = () => {
-    console.log('[Accepted]')
-    this.setState({
-      output: 'Accepted'
-    })
-  }
-
-  onFound = () => {
-    console.log('[Found]')
-    this.setState({
-      output: 'Found'
-    })
-  }
+  onFound = () => this.updateConsole('💎 Found!')
+  onAccepted = () => this.updateConsole('💵 Accepted!')
+  onError = err => this.updateConsole(`❗ Error! ${err}`)
 
   componentDidMount = () => {
+    // Console
+    this.consoleTexts = ['', '', '', '', '']
+    this.consoles = [0, 1, 2, 3, 4].map(index => this.svg.querySelector(`g text#line${index}`))
+    this.updateConsole('⚡ Initializing...')
+
+    // Gimmick
     this.cars = [0, 1, 2].map(index => {
       const car = this.svg.querySelector(`g image#car${index}`)
       const carY = 320 / 2 - 42 - Math.random() * 28
@@ -87,12 +79,11 @@ class App extends Component {
       this.carSpeeds[index] = this.getRandomSpeed()
       return car
     })
+
     this.startLoop()
   }
 
-  componentWillUnmount = () => {
-    this.stopLoop()
-  }
+  componentWillUnmount = () => this.stopLoop()
 
   startLoop = () => {
     if (!this._frameId) {
@@ -131,7 +122,7 @@ class App extends Component {
   stopLoop = () => window.cancelAnimationFrame(this._frameId)
 
   render () {
-    const hps = '32.12'
+    const hps = '0.000'
     const { client } = this
 
     let y = 32
@@ -141,6 +132,9 @@ class App extends Component {
 
     // Border
     draw.rect({ x: 0, y: 0, width: 320, height: 320, fill: '#EFEFEF' })
+
+    // Console
+    decorateMiniConsole(draw, 320 / 2 + 56, 80)
 
     // Gimmick
     decorateGimmick(draw, 320 / 2, 320 / 2)
@@ -159,7 +153,7 @@ class App extends Component {
     // 'hashes / second'
     draw.text({
       x: 320 / 2,
-      y: (y = y + 20),
+      y: (y = y + 18),
       fontSize: 14,
       fill: 'gray',
       textAnchor: 'end',
@@ -230,7 +224,7 @@ class App extends Component {
       x: 320 / 2,
       y: 320 - 24,
       fontSize: 9,
-      fill: '#666666',
+      fill: 'lightgray',
       textAnchor: 'middle',
       text: 'COPYRIGHT 2017 ❤ RABBOT.IO'
     })
@@ -242,8 +236,9 @@ class App extends Component {
           status={this.state.status}
           siteKey='QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'
           onInit={miner => this.onInit(miner)}
-          onAccepted={() => this.onAccepted()}
           onFound={() => this.onFound()}
+          onAccepted={() => this.onAccepted()}
+          onError={err => this.onError(err)}
         />
       </Containerz>
     )

@@ -27,7 +27,6 @@ class CoinHiveClient extends Component {
   }
 
   start () {
-    return
     if (this.miner) {
       this.miner.start()
       this._status = 'START'
@@ -57,7 +56,10 @@ class CoinHiveClient extends Component {
 
     this.miner.on('open', () => this.props.onOpen())
     this.miner.on('close', () => this.props.onClose())
-    this.miner.on('error', err => this.props.onError(err.error))
+    this.miner.on('error', err => {
+      console.log(err)
+      this.props.onError(err.error)
+    })
     this.miner.on('job', result => this.props.onJob(result))
     this.miner.on('authed', result => this.props.onAuthed(result))
     this.miner.on('found', result => this.props.onFound(result))
