@@ -61,23 +61,18 @@ const onShare = svg => {
   const svgSize = svg.getBoundingClientRect()
   const w = svgSize.width
   const h = svgSize.height
-  // setHiDPICanvas(canvas, w, h)
 
-  // svg.setAttribute('transform', 'scale(2,2)')
-
-  // const svg2container = document.createElement('div')
-  // svg.setAttribute('id', 'svg2')
-  svg.setAttribute('width', '640')
-  svg.setAttribute('height', '640')
-  svg.setAttribute('transform', 'scale(2,2)')
+  svg.setAttribute('width', 640)
+  svg.setAttribute('height', 640)
+  svg.setAttribute('transform', `scale(2,2)`)
 
   canvg(canvas, svg.outerHTML, {
     scaleWidth: 640,
     scaleHeight: 640
   })
 
-  svg.setAttribute('width', '320')
-  svg.setAttribute('height', '320')
+  svg.setAttribute('width', 320)
+  svg.setAttribute('height', 320)
   svg.setAttribute('transform', 'scale(1,1)')
 }
 
