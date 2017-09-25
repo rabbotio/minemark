@@ -80,6 +80,13 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+    this.cars = [0, 1, 2].map(index => {
+      const car = this.svg.querySelector(`g image#car${index}`)
+      const carY = 320 / 2 - 42 - Math.random() * 28
+      car.setAttribute('y', carY)
+      this.carSpeeds[index] = this.getRandomSpeed()
+      return car
+    })
     this.startLoop()
   }
 
@@ -93,18 +100,20 @@ class App extends Component {
     }
   }
 
+  getRandomSpeed = () => 1 + 3 * Math.random()
+
   loop = () => {
     // Move car
-    ;[0, 1, 2].forEach(index => {
-      const car = this.svg.querySelector(`g image#car${index}`)
-      const carX = this.carSpeeds[index] * time % 320
-      const carY = 320 / 2 - 40 - Math.random() * 32
+    this.cars.forEach((car, index) => {
+      const carX = 1.1 * (this.carSpeeds[index] * time % 320)
+      const carY = 320 / 2 - 42 - Math.random() * 28
       car.setAttribute('x', carX)
 
       // Random start Y
-      if (carX === 0) {
+      if (carX > 320 * 1.1) {
+        console.log(index)
         car.setAttribute('y', carY)
-        this.carSpeeds = [2 * Math.random(), 2 * Math.random(), 2 * Math.random()]
+        this.carSpeeds[index] = this.getRandomSpeed()
       }
     })
 
@@ -129,6 +138,9 @@ class App extends Component {
 
     // Canvas
     const draw = new SVG('320', '320')
+
+    // Border
+    draw.rect({ x: 0, y: 0, width: 320, height: 320, fill: '#EFEFEF' })
 
     // Gimmick
     decorateGimmick(draw, 320 / 2, 320 / 2)
@@ -166,7 +178,7 @@ class App extends Component {
     // kat
     draw.image({
       x: 320 / 2 + 8,
-      y,
+      y: (y = y + 6),
       width: 64,
       height: 64,
       href: './kat.png'
@@ -175,7 +187,7 @@ class App extends Component {
     y = decorateClient(draw, 320 / 2, y, client)
 
     // Ranking
-    y = decorateRanking(draw, 320 / 2, (y = y + 16), [
+    y = decorateRanking(draw, 320 / 2, (y = y + 20), [
       {
         min: 21.27,
         max: 32.44,
@@ -218,7 +230,7 @@ class App extends Component {
       x: 320 / 2,
       y: 320 - 24,
       fontSize: 9,
-      fill: 'lightgray',
+      fill: '#666666',
       textAnchor: 'middle',
       text: 'COPYRIGHT 2017 ❤ RABBOT.IO'
     })
