@@ -63,7 +63,7 @@ class App extends Component {
 
   onFound = () => this.updateConsole('💎 Found!')
   onAccepted = () => this.updateConsole('💵 Accepted!')
-  onError = err => this.updateConsole(`❗ Error! ${err}`)
+  onError = err => this.updateConsole(`🔥 Error! ${err}`)
 
   componentDidMount = () => {
     // Console
