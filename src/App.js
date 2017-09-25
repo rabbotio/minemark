@@ -30,6 +30,7 @@ class App extends Component {
     this._hps = 0
 
     this.carSpeeds = [1, 2, 3]
+    this.carTargetSpeeds = [3, 2, 1]
 
     this.state = {
       status: `INIT`
@@ -74,9 +75,10 @@ class App extends Component {
     // Gimmick
     this.cars = [0, 1, 2].map(index => {
       const car = this.svg.querySelector(`g image#car${index}`)
-      const carY = 320 / 2 - 42 - Math.random() * 28
+      const carY = this.getRandomCarY(index)
       car.setAttribute('y', carY)
       this.carSpeeds[index] = this.getRandomSpeed()
+      this.carTargetSpeeds[index] = this.getRandomSpeed()
       return car
     })
 
@@ -91,20 +93,23 @@ class App extends Component {
     }
   }
 
-  getRandomSpeed = () => 1 + 3 * Math.random()
+  getRandomSpeed = () => 2 + 3 * Math.random()
+  getRandomCarY = index => 320 / 2 - 36 - 10 * (3 - index) - Math.random() * 6 + Math.random() * 6
 
   loop = () => {
     // Move car
     this.cars.forEach((car, index) => {
-      const carX = 1.1 * (this.carSpeeds[index] * time % 320)
-      const carY = 320 / 2 - 42 - Math.random() * 28
+      this.carSpeeds[index] += (this.carTargetSpeeds[index] - this.carSpeeds[index]) / 10
+      const _carX = Number(car.getAttribute('x'))
+      const carX = _carX + this.carSpeeds[index]
       car.setAttribute('x', carX)
 
       // Random start Y
-      if (carX > 320 * 1.1) {
-        console.log(index)
+      if (carX > 320) {
+        car.setAttribute('x', 0)
+        const carY = this.getRandomCarY(index)
         car.setAttribute('y', carY)
-        this.carSpeeds[index] = this.getRandomSpeed()
+        this.carTargetSpeeds[index] = this.getRandomSpeed()
       }
     })
 
