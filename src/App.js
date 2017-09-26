@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 // Library
 import ClientInfo from './lib/clientInfo'
+import Runner from './lib/Runner'
 
 // Components
 import Stage from './components/Stage'
@@ -64,18 +65,14 @@ class App extends Component {
     // Gimmick
     this.cars = new Cars(this.svg)
 
-    this.startLoop()
+    // Runner
+    this.runner = new Runner(this.onRun)
+    this.runner.startLoop()
   }
 
-  componentWillUnmount = () => this.stopLoop()
+  componentWillUnmount = () => this.runner.stopLoop()
 
-  startLoop = () => {
-    if (!this._frameId) {
-      this._frameId = window.requestAnimationFrame(this.loop)
-    }
-  }
-
-  loop = () => {
+  onRun = () => {
     // Move car
     this.cars.update()
 
@@ -83,12 +80,7 @@ class App extends Component {
     const hps = this.svg.querySelector('g text#hps')
     this._hps += (this.hps - this._hps) / 8
     hps.innerHTML = Number(this._hps).toPrecision(4)
-
-    // Next
-    this.frameId = window.requestAnimationFrame(this.loop)
   }
-
-  stopLoop = () => window.cancelAnimationFrame(this._frameId)
 
   render () {
     return (
