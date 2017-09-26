@@ -18,8 +18,6 @@ import styled from 'styled-components'
 const Containerz = styled.div`
   text-align: center
 `
-
-let time = 0
 class App extends Component {
   constructor (props) {
     super(props)
@@ -123,7 +121,6 @@ class App extends Component {
 
     // Next
     this.frameId = window.requestAnimationFrame(this.loop)
-    ++time
   }
 
   stopLoop = () => window.cancelAnimationFrame(this._frameId)
@@ -252,7 +249,7 @@ class App extends Component {
         <Buttonz onClick={() => onShare(this.svg)}>
           SHARE
         </Buttonz>
-        <canvas id='canvas' width='640' height='640' style={{ display: 'none' }} />
+        <canvas id='canvas' width='640' height='640' />
       </Containerz>
     )
   }
