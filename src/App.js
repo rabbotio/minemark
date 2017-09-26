@@ -6,6 +6,7 @@ import ClientInfo from './lib/clientInfo'
 // Components
 import Stage from './components/Stage'
 import Terminal from './components/Terminal'
+import Cars from './components/Cars'
 import CoinHive from './components/CoinHive'
 import { onShare } from './components/Share'
 import { Buttonz } from './styles/buttons'
@@ -25,9 +26,6 @@ class App extends Component {
     this.client = new ClientInfo().getData()
     this.hps = 0
     this._hps = 0
-
-    this.carSpeeds = [1, 2, 3]
-    this.carTargetSpeeds = [3, 2, 1]
 
     this.state = {
       status: `INIT`
@@ -64,14 +62,7 @@ class App extends Component {
     this.terminal.update('⚡ Initializing...')
 
     // Gimmick
-    this.cars = [0, 1, 2].map(index => {
-      const car = this.svg.querySelector(`g image#car${index}`)
-      const carY = this.getRandomCarY(index)
-      car.setAttribute('y', carY)
-      this.carSpeeds[index] = this.getRandomSpeed()
-      this.carTargetSpeeds[index] = this.getRandomSpeed()
-      return car
-    })
+    this.cars = new Cars(this.svg)
 
     this.startLoop()
   }
@@ -84,25 +75,9 @@ class App extends Component {
     }
   }
 
-  getRandomSpeed = () => 2 + 3 * Math.random()
-  getRandomCarY = index => 320 / 2 - 36 - 10 * (3 - index) - Math.random() * 6 + Math.random() * 6
-
   loop = () => {
     // Move car
-    this.cars.forEach((car, index) => {
-      this.carSpeeds[index] += (this.carTargetSpeeds[index] - this.carSpeeds[index]) / 10
-      const _carX = Number(car.getAttribute('x'))
-      const carX = _carX + this.carSpeeds[index]
-      car.setAttribute('x', carX)
-
-      // Random start Y
-      if (carX > 320) {
-        car.setAttribute('x', 0)
-        const carY = this.getRandomCarY(index)
-        car.setAttribute('y', carY)
-        this.carTargetSpeeds[index] = this.getRandomSpeed()
-      }
-    })
+    this.cars.update()
 
     // HPS
     const hps = this.svg.querySelector('g text#hps')
