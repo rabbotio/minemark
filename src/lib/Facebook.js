@@ -17,20 +17,27 @@ class Facebook {
       })
     })
 
-  postImageToFacebook = async ({ token, filename, blob, message }) => {
+  postBlob = async ({ token, blob, filename, message }) => {
     const formData = new FormData()
     formData.append('access_token', token)
     formData.append('source', blob, filename)
-    formData.append('message', message)
+    message && formData.append('message', message)
 
-    console.log(formData)
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest()
+      xhr.open('POST', 'https://graph.facebook.com/me/photos', true)
+      xhr.onload = xhr.onerror = () => {
+        console.log(xhr.responseText)
+        const json = JSON.parse(xhr.responseText)
 
-    const xhr = new XMLHttpRequest()
-    xhr.open('POST', 'https://graph.facebook.com/me/photos', true)
-    xhr.onload = xhr.onerror = () => {
-      console.log(xhr.responseText)
-    }
-    xhr.send(formData)
+        // Guard
+        if (!json.id) reject(new Error(xhr.responseText))
+
+        // { id, post_id }
+        resolve(json)
+      }
+      xhr.send(formData)
+    })
   }
 
   willLogInWithScope = async (login, scope = 'publish_actions') =>
@@ -38,22 +45,22 @@ class Facebook {
       login(response => resolve(response), { scope })
     })
 
-  willPostBlob = async (token, blob) =>
-    this.postImageToFacebook({
+  willPostBlob = async (token, blob, message) =>
+    this.postBlob({
       token,
       filename: 'mine.png',
       blob,
-      message: 'message'
+      message
     })
 
-  willShareWithFacebook = async (appId, blob) => {
+  shareBlob = async (appId, blob, message) => {
     const FB = await this.init(appId)
 
     // Get login status and post
     FB.getLoginStatus(response => {
       switch (response.status) {
         case 'connected':
-          this.willPostBlob(response.authResponse.accessToken, blob)
+          this.willPostBlob(response.authResponse.accessToken, blob, message)
           break
         case 'not_authorized':
         default:

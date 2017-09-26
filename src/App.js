@@ -6,6 +6,7 @@ import Runner from './lib/Runner'
 
 // Components
 import Stage from './components/Stage'
+import Meter from './components/Meter'
 import Terminal from './components/Terminal'
 import Cars from './components/Cars'
 import CoinHive from './components/CoinHive'
@@ -22,11 +23,7 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    this._frameId = null
-
     this.client = new ClientInfo().getData()
-    this.hps = 0
-    this._hps = 0
 
     this.state = {
       status: `INIT`
@@ -58,6 +55,9 @@ class App extends Component {
   componentDidMount = () => {
     this.svg = document.getElementById('svg')
 
+    // Meter
+    this.meter = new Meter(this.svg)
+
     // Terminal
     this.terminal = new Terminal(this.svg)
     this.terminal.update('⚡ Initializing...')
@@ -77,9 +77,12 @@ class App extends Component {
     this.cars.update()
 
     // HPS
-    const hps = this.svg.querySelector('g text#hps')
-    this._hps += (this.hps - this._hps) / 8
-    hps.innerHTML = Number(this._hps).toPrecision(4)
+    this.meter.update(this.hps)
+  }
+
+  onShareClick = async e => {
+    e.target.disabled = true
+    const json = await onShare(this.svg)
   }
 
   render () {
@@ -96,8 +99,17 @@ class App extends Component {
             onError={err => this.onError(err)}
           />
         </Containerz>
-        <Buttonz onClick={() => onShare(this.svg)}>
-          SHARE
+        <Buttonz onClick={e => this.onShareClick(e)}>
+
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='16' height='16' style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+            <g>
+              <path d='m287 456v-299c0-21 6-35 35-35h38v-63c-7-1-29-3-55-3-54 0-91 33-91 94v306m143-254h-205v72h196' fill='#ffffff' />
+            </g>
+          </svg>
+
+          <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+            SHARE
+          </span>
         </Buttonz>
         <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
       </Containerz>

@@ -11,8 +11,7 @@ border-radius:5px;
 border:solid 1px #bdc3c7;
 background:#95a5a6;
 text-align:center;
-padding:4px 8px 6px;
-margin: 12px;
+margin: 8px;
 outline: none;
 
 -webkit-transition: all 0.1s;

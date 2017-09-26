@@ -2,6 +2,8 @@ import canvg from 'canvg-browser'
 import '../lib/canvas-blob'
 
 import Facebook from '../lib/Facebook'
+import Twitter from '../lib/Twitter'
+
 const FB_APP_ID = '113587919136550'
 
 const onShare = (svg, provider = 'facebook') => {
@@ -28,10 +30,10 @@ const onShare = (svg, provider = 'facebook') => {
         // Share Facebook
         switch (provider) {
           case 'facebook':
-            new Facebook().willShareWithFacebook(FB_APP_ID, blob)
+            new Facebook().shareBlob(FB_APP_ID, blob)
             break
           case 'twitter':
-            console.info('Not implement yet')
+            new Twitter().shareBlob(blob)
             break
           default:
             console.error('Not implement')
