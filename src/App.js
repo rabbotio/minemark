@@ -2,15 +2,12 @@ import React, { Component } from 'react'
 
 // Library
 import ClientInfo from './lib/clientInfo'
-import SVG from './lib/svg-jsx'
 
 // Components
+import Stage from './components/Stage'
 import CoinHive from './components/CoinHive'
-import { decorateMiniConsole } from './components/MiniConsole'
-import { decorateGimmick } from './components/Gimmick'
-import { decorateClient } from './components/ClientInfo'
-import { decorateRanking } from './components/Ranking'
-import { Buttonz, onShare } from './components/Share'
+import { onShare } from './components/Share'
+import { Buttonz } from './styles/buttons'
 
 // Styles
 import styled from 'styled-components'
@@ -126,117 +123,10 @@ class App extends Component {
   stopLoop = () => window.cancelAnimationFrame(this._frameId)
 
   render () {
-    const hps = '0.000'
-    const { client } = this
-
-    let y = 32
-
-    // Canvas
-    const draw = new SVG('320', '320')
-
-    // Border
-    draw.rect({ x: 0, y: 0, width: 320, height: 320, fill: '#EFEFEF' })
-
-    // Console
-    decorateMiniConsole(draw, 320 / 2 + 56, 80)
-
-    // Gimmick
-    decorateGimmick(draw, 320 / 2, 320 / 2)
-
-    // Dialog
-    draw.text({
-      x: 320 / 2,
-      y: (y = y + 32),
-      id: 'hps',
-      fontSize: 42,
-      fill: '#EA6B66',
-      textAnchor: 'end',
-      text: hps
-    })
-
-    // 'hashes / second'
-    draw.text({
-      x: 320 / 2,
-      y: (y = y + 18),
-      fontSize: 14,
-      fill: 'gray',
-      textAnchor: 'end',
-      text: 'hashes / second'
-    })
-
-    // /
-    draw.line({
-      x1: 320 / 2 + 6,
-      y1: y + 6,
-      x2: 320 / 2 + 16,
-      y2: y + 16,
-      stroke: 'gray'
-    })
-
-    // kat
-    draw.image({
-      x: 320 / 2 + 8,
-      y: (y = y + 6),
-      width: 64,
-      height: 64,
-      href: './kat.png'
-    })
-
-    y = decorateClient(draw, 320 / 2, y, client)
-
-    // Ranking
-    y = decorateRanking(draw, 320 / 2, (y = y + 20), [
-      {
-        min: 21.27,
-        max: 32.44,
-        thread: 4,
-        name: 'Chrome',
-        version: '60.0.3112.113'
-      },
-      {
-        min: 19.61,
-        max: 24.23,
-        thread: 4,
-        name: 'Firefox',
-        version: '60.0.3112.113'
-      },
-      {
-        min: 15.77,
-        max: 18.45,
-        thread: 4,
-        name: 'Safari',
-        version: '60.0.3112.113'
-      },
-      {
-        min: 7.54,
-        max: 8.98,
-        thread: 4,
-        name: 'Edge',
-        version: '60.0.3112.113'
-      },
-      {
-        min: 5.54,
-        max: 6.98,
-        thread: 4,
-        name: 'Opera',
-        version: '1.2.1'
-      }
-    ])
-
-    // Copy
-    draw.text({
-      x: 320 / 2,
-      y: 320 - 24,
-      fontSize: 9,
-      fill: 'gray',
-      textAnchor: 'middle',
-      text: 'COPYRIGHT 2017 ❤ RABBOT.IO'
-    })
-
     return (
       <Containerz>
         <Containerz>
-          {draw.jsx()}
+          <Stage client={this.client} />
           <CoinHive
             status={this.state.status}
             siteKey='QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'
@@ -249,7 +139,7 @@ class App extends Component {
         <Buttonz onClick={() => onShare(this.svg)}>
           SHARE
         </Buttonz>
-        <canvas id='canvas' width='640' height='640' />
+        <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
       </Containerz>
     )
   }

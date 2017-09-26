@@ -10,8 +10,10 @@ yarn start
 - [x] Animation
 - [x] Console log animation
 - [x] Capture
-- [ ] Share Facebook
-- [ ] Share Twitter
+- [x] Share Facebook
 - [ ] Firebase read
 - [ ] Firebase write
 - [ ] Google Analytics
+- [ ] Facebook Analytics
+- [ ] Crash Analytics
+- [ ] Share Twitter
