@@ -14,7 +14,7 @@ const Stage = ({ client }) => {
   const draw = new SVG('320', '320')
 
   // Border
-  draw.rect({ x: 0, y: 0, width: 320, height: 320, fill: '#EFEFEF' })
+  draw.rect({ x: 0, y: 0, width: 320, height: 320, fill: '#FFFFFF' })
 
   // Console
   decorateMiniConsole(draw, 320 / 2 + 56, 80)
