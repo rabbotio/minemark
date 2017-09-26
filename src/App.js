@@ -5,6 +5,7 @@ import ClientInfo from './lib/clientInfo'
 
 // Components
 import Stage from './components/Stage'
+import Terminal from './components/Terminal'
 import CoinHive from './components/CoinHive'
 import { onShare } from './components/Share'
 import { Buttonz } from './styles/buttons'
@@ -46,29 +47,21 @@ class App extends Component {
     )
   }
 
-  updateConsole = text => {
-    if (text === this.consoleTexts[0]) return
-    this.consoleTexts.unshift(text)
-    this.consoleTexts.pop()
-    this.consoles.forEach((line, index) => (line.innerHTML = this.consoleTexts[index]))
-  }
-
   onMining = ({ hashesPerSecond = 0, totalHashes = 0, acceptedHashes = 0 }) => {
     this.hps = hashesPerSecond
-    this.updateConsole(`⛏ Mining...${Number(this.hps).toPrecision(8)}`)
+    this.terminal.update(`⛏ Mining...${Number(this.hps).toPrecision(8)}`)
   }
 
-  onFound = () => this.updateConsole('💎 Found!')
-  onAccepted = () => this.updateConsole('💵 Accepted!')
-  onError = err => this.updateConsole(`🔥 Error! ${err}`)
+  onFound = () => this.terminal.update('💎 Found!')
+  onAccepted = () => this.terminal.update('💵 Accepted!')
+  onError = err => this.terminal.update(`🔥 Error! ${err}`)
 
   componentDidMount = () => {
     this.svg = document.getElementById('svg')
 
-    // Console
-    this.consoleTexts = ['', '', '', '', '']
-    this.consoles = [0, 1, 2, 3, 4].map(index => this.svg.querySelector(`g text#line${index}`))
-    this.updateConsole('⚡ Initializing...')
+    // Terminal
+    this.terminal = new Terminal(this.svg)
+    this.terminal.update('⚡ Initializing...')
 
     // Gimmick
     this.cars = [0, 1, 2].map(index => {
