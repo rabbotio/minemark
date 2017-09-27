@@ -58,14 +58,14 @@ export default class SVG {
 
   image = props => {
     const _props = Object.assign({ key: ++this.index, x: 0, y: 0, width: 100, height: 100 }, props)
-    const _element = <image {..._props} />
+    const _element = <image {..._props} xlinkHref={_props.href} />
     this.elements.push(_element)
     return _element
   }
 
   jsx = () => (
     <div>
-      <svg id='svg' width={this.w} height={this.h}>
+      <svg id='svg' width={this.w} height={this.h} viewBox={`0 0 ${this.w} ${this.h}`}>
         <g>{this.elements}</g>
       </svg>
     </div>
