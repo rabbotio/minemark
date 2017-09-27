@@ -12,7 +12,9 @@ const GRAPHQL_END_POINT = 'https://api.graph.cool/simple/v1/cj82k7wkh0bqq0177qv1
 
 export const start = () => {
   const client = new ApolloClient({
-    networkInterface: createNetworkInterface(GRAPHQL_END_POINT)
+    networkInterface: createNetworkInterface({
+      uri: GRAPHQL_END_POINT
+    })
   })
 
   const WrappedApp = (

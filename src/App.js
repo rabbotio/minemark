@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { gql, graphql } from 'react-apollo'
+
 // Library
 import ClientInfo from './lib/clientInfo'
 import Runner from './lib/Runner'
 
 // Services
-import Collector from './services/Collector'
+import Collector from './model/Collector'
+import { getDeviceRanking } from './model/Ranking'
 
 // Components
 import Stage from './components/Stage'
@@ -99,7 +100,7 @@ class App extends Component {
   onAccepted = () => this.terminal.update('💵 Accepted!')
   onError = err => this.terminal.update(`🔥 Error! ${err}`)
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     this.svg = document.getElementById('svg')
 
     // Meter
@@ -116,26 +117,9 @@ class App extends Component {
     this.runner = new Runner(this.onRun)
     this.runner.startLoop()
 
-    const DevicesQuery = gql`
-    query {
-      allDevices {
-        browserName
-        browserVersion
-        thread
-        min
-        max
-      }
-    }`
-
-    this.props.client
-      .query({
-        query: DevicesQuery
-      })
-      .then(res =>
-        this.setState({
-          ranking: res.data.allDevices
-        })
-      )
+    // Pull new data
+    const ranking = await getDeviceRanking(this.props.client)
+    this.setState({ ranking })
   }
 
   componentWillUnmount = () => this.runner.stopLoop()
