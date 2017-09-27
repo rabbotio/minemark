@@ -1,8 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import React from 'react'
+import { render } from 'react-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+// apollo imports
+import { ApolloProvider } from 'react-apollo'
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
+
+import App from './App'
+import './index.css'
+
+const GRAPHQL_END_POINT = 'https://api.graph.cool/simple/v1/cj82k7wkh0bqq0177qv1vbb8r'
+
+export const start = () => {
+  const client = new ApolloClient({
+    networkInterface: createNetworkInterface(GRAPHQL_END_POINT)
+  })
+
+  const WrappedApp = (
+    <ApolloProvider client={client}>
+      <App client={client} />
+    </ApolloProvider>
+  )
+
+  render(WrappedApp, document.getElementById('root'))
+}
+
+start()

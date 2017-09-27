@@ -5,7 +5,7 @@ import { decorateGimmick } from './Gimmick'
 import { decorateClient } from './ClientInfo'
 import { decorateRanking } from './Ranking'
 
-const Stage = ({ client }) => {
+const Stage = ({ clientInfo, ranking }) => {
   const hps = '0.000'
 
   let y = 32
@@ -61,46 +61,10 @@ const Stage = ({ client }) => {
     href: './kat.png'
   })
 
-  y = decorateClient(draw, 320 / 2, y, client)
+  y = decorateClient(draw, 320 / 2, y, clientInfo)
 
   // Ranking
-  y = decorateRanking(draw, 320 / 2, (y = y + 20), [
-    {
-      min: 21.27,
-      max: 32.44,
-      thread: 4,
-      name: 'Chrome',
-      version: '60.0.3112.113'
-    },
-    {
-      min: 19.61,
-      max: 24.23,
-      thread: 4,
-      name: 'Firefox',
-      version: '60.0.3112.113'
-    },
-    {
-      min: 15.77,
-      max: 18.45,
-      thread: 4,
-      name: 'Safari',
-      version: '60.0.3112.113'
-    },
-    {
-      min: 7.54,
-      max: 8.98,
-      thread: 4,
-      name: 'Edge',
-      version: '60.0.3112.113'
-    },
-    {
-      min: 5.54,
-      max: 6.98,
-      thread: 4,
-      name: 'Opera',
-      version: '1.2.1'
-    }
-  ])
+  y = decorateRanking(draw, 320 / 2, (y = y + 20), ranking)
 
   // Copy
   draw.text({

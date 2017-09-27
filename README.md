@@ -10,10 +10,18 @@ yarn start
 - [x] Animation
 - [x] Console log animation
 - [x] Capture
-- [x] Share Facebook
-- [ ] Firebase read
-- [ ] Firebase write
+- [x] GraphCool read
+- [ ] GraphCool write
+- [ ] Sharer https://simplesharingbuttons.com
+- [ ] Default og:image http://ogp.me/
+- [ ] Download button
 - [ ] Google Analytics
 - [ ] Facebook Analytics
 - [ ] Crash Analytics
-- [ ] Share Twitter
+
+## TOHAVE : Unique Share
+- [x] Share Facebook
+- [ ] Post to Facebook page
+- [ ] Long page access token
+- [ ] Cron to get long page access token
+- [ ] More smart canvas-blob https://github.com/nodeca/pica
