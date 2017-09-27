@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 
 const Buttonz = styled.button`
+cursor: pointer;
 position:relative;
 width: auto;
 display:inline-block;
