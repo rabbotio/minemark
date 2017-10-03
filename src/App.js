@@ -79,15 +79,16 @@ class App extends Component {
   }
 
   onInit = async miner => {
+    // Get old data
+    this.persistanceData = await this.model.getData()
+
     // Register
     await collect(this.props.client, this.clientInfo, this.persistanceData, 0, 0).then(result => {
       if (!result) return
 
-      const { id, updatedAt } = result.data.createDevice
+      const { id } = result.data.createDevice
       this.model.setId(id)
       this.persistanceData.id = id
-
-      console.log('create:', id, updatedAt)
     })
 
     // Mining
@@ -110,10 +111,11 @@ class App extends Component {
     // Terminal
     this.terminal.update(`⛏ Mining...${Number(this.hps).toPrecision(8)}`)
 
+    if (!this.persistanceData.id) return
+
     // Upsert result?
     collect(this.props.client, this.clientInfo, this.persistanceData, this.hps, thread).then(result => {
       if (!result) return
-      console.log(result)
     })
   }
 
@@ -138,9 +140,6 @@ class App extends Component {
     // Runner
     this.runner = new Runner(this.onRun)
     this.runner.startLoop()
-
-    // Get old data
-    this.persistanceData = await this.model.getData()
 
     // Pull new data
     const ranking = await getDeviceRanking(this.props.client)

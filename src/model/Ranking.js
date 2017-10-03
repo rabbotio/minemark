@@ -4,7 +4,7 @@ const getDeviceRanking = async client =>
   client
     .query({
       query: gql`{
-      allDevices(first: 10, orderBy: max_DESC) {
+      allDevices(first: 5, orderBy: max_DESC) {
         browserName
         browserVersion
         thread
@@ -17,7 +17,6 @@ const getDeviceRanking = async client =>
 
 const upsertDevice = async (client, { id = '', uuid, browserName, browserVersion, thread, min, max }) => {
   id = id || ''
-  console.log('upsertDevice:', id, min, '-', max)
 
   const payload = `uuid: "${uuid}"
 browserName: "${browserName}"
@@ -65,6 +64,7 @@ const collect = async (client, clientInfo, persistanceData, hps, thread) => {
   let isDirty = false
   if (_min > min) (min = _min) && (isDirty = true)
   if (_max > max) (max = _max) && (isDirty = true)
+  if (!id) isDirty = true
 
   // Dirty?
   if (!isDirty) return null
