@@ -5,8 +5,8 @@ import ClientInfo from './lib/clientInfo'
 import Runner from './lib/Runner'
 
 // Services
-import Collector from './model/Collector'
-import { getDeviceRanking } from './model/Ranking'
+import Model from './model'
+import { getDeviceRanking, collect } from './model/Ranking'
 
 // Components
 import Stage from './components/Stage'
@@ -31,7 +31,7 @@ class App extends Component {
     super(props)
 
     this.clientInfo = new ClientInfo().getData()
-    this.collector = new Collector()
+    this.model = new Model()
 
     // Ranking
     const ranking = [
@@ -78,22 +78,43 @@ class App extends Component {
     }
   }
 
-  onInit = miner => {
+  onInit = async miner => {
+    // Register
+    await collect(this.props.client, this.clientInfo, this.persistanceData, 0, 0).then(result => {
+      if (!result) return
+
+      const { id, updatedAt } = result.data.createDevice
+      this.model.setId(id)
+      this.persistanceData.id = id
+
+      console.log('create:', id, updatedAt)
+    })
+
+    // Mining
     setInterval(
       () =>
         miner &&
         this.onMining({
           hashesPerSecond: miner.getHashesPerSecond(),
           totalHashes: miner.getTotalHashes(),
-          acceptedHashes: miner.getAcceptedHashes()
+          acceptedHashes: miner.getAcceptedHashes(),
+          thread: miner.getNumThreads()
         }),
       1000
     )
   }
 
-  onMining = ({ hashesPerSecond = 0, totalHashes = 0, acceptedHashes = 0 }) => {
+  onMining = ({ hashesPerSecond = 0, totalHashes = 0, acceptedHashes = 0, thread = 0 }) => {
     this.hps = hashesPerSecond
+
+    // Terminal
     this.terminal.update(`⛏ Mining...${Number(this.hps).toPrecision(8)}`)
+
+    // Upsert result?
+    collect(this.props.client, this.clientInfo, this.persistanceData, this.hps, thread).then(result => {
+      if (!result) return
+      console.log(result)
+    })
   }
 
   onFound = () => this.terminal.update('💎 Found!')
@@ -101,6 +122,7 @@ class App extends Component {
   onError = err => this.terminal.update(`🔥 Error! ${err}`)
 
   componentDidMount = async () => {
+    // SVG
     this.svg = document.getElementById('svg')
 
     // Meter
@@ -116,6 +138,9 @@ class App extends Component {
     // Runner
     this.runner = new Runner(this.onRun)
     this.runner.startLoop()
+
+    // Get old data
+    this.persistanceData = await this.model.getData()
 
     // Pull new data
     const ranking = await getDeviceRanking(this.props.client)
