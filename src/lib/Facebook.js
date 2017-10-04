@@ -48,7 +48,7 @@ class Facebook {
   willPostBlob = async (token, blob, message) =>
     this.postBlob({
       token,
-      filename: 'mine.png',
+      filename: 'minemark.png',
       blob,
       message
     })

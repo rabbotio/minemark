@@ -30,6 +30,16 @@ box-shadow: 0px 3px 0px #7f8c8d;
     position:relative;
     top:4px;
 }
+
+svg {
+  display:inline-block;
+  vertical-align:middle;
+}
+
+span {
+  display: inline-block;
+  vertical-align: bottom;
+}
 `
 
 export { Buttonz }

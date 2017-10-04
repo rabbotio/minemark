@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 // Library
 import ClientInfo from './lib/clientInfo'
 import Runner from './lib/Runner'
+import { downloadPNG } from './lib/canvas-download'
 
 // Services
 import Model from './model'
@@ -17,7 +18,7 @@ import Cars from './components/Cars'
 import CoinHive from './components/CoinHive'
 // TODO // import { onShare } from './components/Share'
 import { Buttonz } from './styles/buttons'
-import { icon_facebook } from './styles/icons'
+import { icon_camera } from './styles/icons'
 import Footer from './components/Footer'
 
 // Styles
@@ -171,6 +172,10 @@ class App extends Component {
     // TODO : const json = await onShare(this.svg)
   }
 
+  onSaveClick = e => {
+    downloadPNG(this.svg, `minemark-${+new Date()}.png`).catch(alert)
+  }
+
   render () {
     return (
       <div>
@@ -187,9 +192,9 @@ class App extends Component {
             onAccepted={() => this.onAccepted()}
             onError={err => this.onError(err)}
           />
-          <Buttonz onClick={e => this.onShareClick(e)}>
-            {icon_facebook}
-            <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>SHARE</span>
+          <Buttonz onClick={e => this.onSaveClick(e)}>
+            {icon_camera}
+            <span>SAVE</span>
           </Buttonz>
           <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
           <Footer />
