@@ -27,7 +27,6 @@ class Facebook {
       const xhr = new XMLHttpRequest()
       xhr.open('POST', 'https://graph.facebook.com/me/photos', true)
       xhr.onload = xhr.onerror = () => {
-        console.log(xhr.responseText)
         const json = JSON.parse(xhr.responseText)
 
         // Guard

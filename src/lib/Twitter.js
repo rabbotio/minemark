@@ -7,7 +7,6 @@ class Twitter {
       const xhr = new XMLHttpRequest()
       xhr.open('POST', 'https://upload.twitter.com/1.1/media/upload.json', true)
       xhr.onload = xhr.onerror = () => {
-        console.log(xhr.responseText)
         const json = JSON.parse(xhr.responseText)
 
         // Guard

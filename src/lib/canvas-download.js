@@ -29,7 +29,6 @@ const toBlob = svg =>
 
 const downloadPNG = async (svg, fileName = 'download.png') => {
   const blob = await toBlob(svg)
-  console.log(blob)
   const a = document.createElement('a')
   // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
   // a.href = dataURL.replace('image/jpeg', 'image/octet-stream')

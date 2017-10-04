@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import ClientInfo from './lib/clientInfo'
 import Runner from './lib/Runner'
 import { downloadPNG } from './lib/canvas-download'
+import { logPageView, logEvent } from './lib/analytics'
 
 // Services
 import Model from './model'
@@ -135,6 +136,9 @@ class App extends Component {
   onError = err => this.terminal.update(`🔥 Error! ${err}`)
 
   componentDidMount = async () => {
+    // GA
+    logPageView()
+
     // SVG
     this.svg = document.getElementById('svg')
 
@@ -168,12 +172,12 @@ class App extends Component {
   }
 
   onShareClick = e => {
-    console.log(e.target)
     // TODO : const json = await onShare(this.svg)
   }
 
   onSaveClick = e => {
     downloadPNG(this.svg, `minemark-${+new Date()}.png`).catch(alert)
+    logEvent('save', this.persistanceData && this.persistanceData.uuid)
   }
 
   render () {
