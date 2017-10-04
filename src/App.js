@@ -17,6 +17,7 @@ import CoinHive from './components/CoinHive'
 // TODO // import { onShare } from './components/Share'
 import { Buttonz } from './styles/buttons'
 import { icon_facebook } from './styles/icons'
+import Footer from './components/Footer'
 
 // Styles
 import styled from 'styled-components'
@@ -180,6 +181,7 @@ class App extends Component {
           <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>SHARE</span>
         </Buttonz>
         <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
+        <Footer />
       </Containerz>
     )
   }

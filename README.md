@@ -11,7 +11,7 @@ yarn start
 - [x] Console log animation
 - [x] Capture
 - [x] GraphCool read
-- [ ] GraphCool write
+- [x] GraphCool write
 - [ ] Sharer https://simplesharingbuttons.com
 - [ ] Default og:image http://ogp.me/
 - [ ] Download button
