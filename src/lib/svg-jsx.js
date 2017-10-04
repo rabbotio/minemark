@@ -64,10 +64,8 @@ export default class SVG {
   }
 
   jsx = () => (
-    <div>
-      <svg id='svg' width={this.w} height={this.h} viewBox={`0 0 ${this.w} ${this.h}`}>
-        <g>{this.elements}</g>
-      </svg>
-    </div>
+    <svg id='svg' width={this.w} height={this.h} viewBox={`0 0 ${this.w} ${this.h}`}>
+      <g>{this.elements}</g>
+    </svg>
   )
 }

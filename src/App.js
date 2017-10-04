@@ -25,6 +25,14 @@ import styled from 'styled-components'
 const Containerz = styled.div`
   text-align: center
 `
+const ShadowContainerz = styled.div`
+width: fit-content;
+display: inline-block;
+
+svg {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+`
 const COIN_HIVE_SITE_KEY = 'QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'
 
 class App extends Component {
@@ -165,17 +173,17 @@ class App extends Component {
   render () {
     return (
       <Containerz>
-        <Containerz>
+        <ShadowContainerz>
           <Stage clientInfo={this.clientInfo} ranking={this.state.ranking} />
-          <CoinHive
-            status={this.state.status}
-            siteKey={COIN_HIVE_SITE_KEY}
-            onInit={miner => this.onInit(miner)}
-            onFound={() => this.onFound()}
-            onAccepted={() => this.onAccepted()}
-            onError={err => this.onError(err)}
-          />
-        </Containerz>
+        </ShadowContainerz>
+        <CoinHive
+          status={this.state.status}
+          siteKey={COIN_HIVE_SITE_KEY}
+          onInit={miner => this.onInit(miner)}
+          onFound={() => this.onFound()}
+          onAccepted={() => this.onAccepted()}
+          onError={err => this.onError(err)}
+        />
         <Buttonz onClick={e => this.onShareClick(e)}>
           {icon_facebook}
           <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>SHARE</span>
