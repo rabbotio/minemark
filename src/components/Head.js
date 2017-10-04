@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 
 const Head = () => (
   <Helmet>
+    <meta name='twitter:card' content='summary' />
     <meta property='og:url' content='https://rabbot.io/minemark' />
     <meta property='og:type' content='article' />
     <meta property='og:title' content='Mine Mark' />
