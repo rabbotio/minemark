@@ -12,7 +12,8 @@ yarn start
 - [x] Capture
 - [x] GraphCool read
 - [x] GraphCool write
-- [ ] Sharer https://simplesharingbuttons.com
+- [x] Sharer https://simplesharingbuttons.com
+- [x] Add og tag
 - [ ] Default og:image http://ogp.me/
 - [ ] Download button
 - [ ] Google Analytics

@@ -9,6 +9,7 @@ import Model from './model'
 import { getDeviceRanking, collect } from './model/Ranking'
 
 // Components
+import Head from './components/Head'
 import Stage from './components/Stage'
 import Meter from './components/Meter'
 import Terminal from './components/Terminal'
@@ -172,25 +173,28 @@ class App extends Component {
 
   render () {
     return (
-      <Containerz>
-        <ShadowContainerz>
-          <Stage clientInfo={this.clientInfo} ranking={this.state.ranking} />
-        </ShadowContainerz>
-        <CoinHive
-          status={this.state.status}
-          siteKey={COIN_HIVE_SITE_KEY}
-          onInit={miner => this.onInit(miner)}
-          onFound={() => this.onFound()}
-          onAccepted={() => this.onAccepted()}
-          onError={err => this.onError(err)}
-        />
-        <Buttonz onClick={e => this.onShareClick(e)}>
-          {icon_facebook}
-          <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>SHARE</span>
-        </Buttonz>
-        <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
-        <Footer />
-      </Containerz>
+      <div>
+        <Head />
+        <Containerz>
+          <ShadowContainerz>
+            <Stage clientInfo={this.clientInfo} ranking={this.state.ranking} />
+          </ShadowContainerz>
+          <CoinHive
+            status={this.state.status}
+            siteKey={COIN_HIVE_SITE_KEY}
+            onInit={miner => this.onInit(miner)}
+            onFound={() => this.onFound()}
+            onAccepted={() => this.onAccepted()}
+            onError={err => this.onError(err)}
+          />
+          <Buttonz onClick={e => this.onShareClick(e)}>
+            {icon_facebook}
+            <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>SHARE</span>
+          </Buttonz>
+          <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
+          <Footer />
+        </Containerz>
+      </div>
     )
   }
 }
