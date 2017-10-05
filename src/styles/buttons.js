@@ -33,12 +33,12 @@ box-shadow: 0px 3px 0px #7f8c8d;
 
 svg {
   display:inline-block;
-  vertical-align:middle;
 }
 
 span {
   display: inline-block;
   vertical-align: bottom;
+  padding: 0.25em;
 }
 `
 

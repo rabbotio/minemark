@@ -2,7 +2,7 @@ const colors = {
   chrome: ['#9b59b6', '#8e44ad'],
   firefox: ['#e67e22', '#d35400'],
   edge: ['#3498db', '#2980b9'],
-  safari: ['#f1c40f', '#f39c12'],
+  safari: ['#2ecc71', '#27ae60'],
   any: ['#e74c3c', '#c0392b']
 }
 

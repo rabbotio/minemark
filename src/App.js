@@ -12,6 +12,7 @@ import { getDeviceRanking, collect } from './model/Ranking'
 
 // Components
 import Head from './components/Head'
+import Logo from './components/Logo'
 import Stage from './components/Stage'
 import Meter from './components/Meter'
 import Terminal from './components/Terminal'
@@ -185,6 +186,7 @@ class App extends Component {
       <div>
         <Head />
         <Containerz>
+          <Logo />
           <ShadowContainerz>
             <Stage clientInfo={this.clientInfo} ranking={this.state.ranking} />
           </ShadowContainerz>
@@ -201,7 +203,6 @@ class App extends Component {
             <span>SAVE</span>
           </Buttonz>
           <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
-          <Footer />
         </Containerz>
       </div>
     )

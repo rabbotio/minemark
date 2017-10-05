@@ -17,13 +17,16 @@ yarn start
 - [x] Download button
 - [x] Google Analytics
 - [ ] Default og:image http://ogp.me/
+- [ ] Icons
 - [ ] Server
 
 ## TOTEST
-- [ ] Share on Facebook
-- [ ] Share on Twitter
+- [ ] Share on Facebook 476 x 249
+- [ ] Share on Twitter 506 x 254
 - [ ] Share on iOS
 - [ ] Save on iOS
+- [ ] Share on Android
+- [ ] Save on Android
 
 ## TOHAVE : Unique Share
 - [x] Share Facebook
