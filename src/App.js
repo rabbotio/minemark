@@ -21,7 +21,6 @@ import CoinHive from './components/CoinHive'
 // TODO // import { onShare } from './components/Share'
 import { Buttonz } from './styles/buttons'
 import { icon_camera } from './styles/icons'
-import Footer from './components/Footer'
 
 // Styles
 import styled from 'styled-components'
