@@ -17,7 +17,7 @@ yarn start
 - [x] Download button
 - [x] Google Analytics
 - [x] Default og:image http://ogp.me/
-- [ ] Icons
+- [x] Icons
 - [ ] Server
 - [ ] FAQ
 
@@ -25,7 +25,7 @@ yarn start
 - [ ] Share on Facebook 476 x 249
 - [ ] Share on Twitter 506 x 254
 - [ ] Share on iOS
-- [ ] Save on iOS
+- [x] Save on iOS
 - [ ] Share on Android
 - [ ] Save on Android
 
@@ -34,6 +34,8 @@ yarn start
 - [ ] Post to Facebook page
 - [ ] Long page access token
 - [ ] Cron to get long page access token
+- [ ] Draw to canvas instead of SVG
+- [ ] Share on twitter
 - [ ] More smart canvas-blob https://github.com/nodeca/pica
 - [ ] Facebook Analytics
 - [ ] Crash Analytics
