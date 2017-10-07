@@ -12,7 +12,6 @@
     "react": "^16.0.0",
     "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0",
-    "react-ga": "^2.3.5",
     "react-helmet": "^5.2.0",
     "react-scripts": "1.0.14",
     "styled-components": "^2.2.1",

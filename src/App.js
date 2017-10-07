@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import ClientInfo from './lib/clientInfo'
 import Runner from './lib/Runner'
 import { downloadPNG } from './lib/canvas-download'
-import { logPageView, logEvent } from './lib/analytics'
+import { initGA, trackPageView, trackEvent } from './lib/analytics'
 
 // Services
 import Model from './model'
@@ -41,6 +41,8 @@ const COIN_HIVE_SITE_KEY = 'QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'
 class App extends Component {
   constructor (props) {
     super(props)
+
+    initGA()
 
     this.clientInfo = new ClientInfo().getData()
     this.model = new Model()
@@ -136,9 +138,6 @@ class App extends Component {
   onError = err => this.terminal.update(`🔥 Error! ${err}`)
 
   componentDidMount = async () => {
-    // GA
-    logPageView()
-
     // SVG
     this.svg = document.getElementById('svg')
 
@@ -177,7 +176,7 @@ class App extends Component {
 
   onSaveClick = e => {
     downloadPNG(this.svg, `minemark-${+new Date()}.png`).catch(alert)
-    logEvent('save', this.persistanceData && this.persistanceData.uuid)
+    trackEvent('save')
   }
 
   render () {

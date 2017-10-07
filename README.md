@@ -16,9 +16,10 @@ yarn start
 - [x] Add og tag
 - [x] Download button
 - [x] Google Analytics
-- [ ] Default og:image http://ogp.me/
+- [x] Default og:image http://ogp.me/
 - [ ] Icons
 - [ ] Server
+- [ ] FAQ
 
 ## TOTEST
 - [ ] Share on Facebook 476 x 249

@@ -1,35 +1,33 @@
-import ReactGA from 'react-ga'
+import loadScript from 'load-script'
 
-const UA = 'UA-107529694-1'
+const GA_TRACKING_ID = 'UA-107529694-1'
+const _isDebug = process.env.NODE_ENV !== 'production'
 
-let _isInit = false
-
-export const initGA = () => {
-  if (_isInit) return
-
-  // console.log('GA init')
-  ReactGA.initialize(UA)
-  _isInit = true
-}
-
-export const logPageView = () => {
-  initGA()
-  // console.log(`Logging pageview for ${window.location.pathname}`)
-  ReactGA.set({ page: window.location.pathname })
-  ReactGA.pageview(window.location.pathname)
-}
-
-export const logEvent = (category = '', action = '') => {
-  if (category && action) {
-    initGA()
-    // console.log('logEvent:', category, action)
-    ReactGA.event({ category, action })
+const gtag = (...args) => {
+  if (!window.dataLayer) {
+    console.warn('gtag not init yet')
+    return
   }
+  _isDebug && console.info('gtag push : ', arguments)
+  window.dataLayer.push(arguments)
 }
 
-export const logException = (description = '', fatal = false) => {
-  if (description) {
-    initGA()
-    ReactGA.exception({ description, fatal })
-  }
-}
+export const initGA = () =>
+  new Promise(resolve =>
+    loadScript(`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`, () => {
+      _isDebug && console.info('gtag init')
+      window.dataLayer = window.dataLayer || []
+      gtag('js', new Date())
+      trackPageView()
+    })
+  )
+
+export const trackPageView = options => gtag('config', GA_TRACKING_ID, options)
+
+export const trackEvent = (action = '') => gtag('event', action)
+
+export const trackException = (error, fatal = false) =>
+  gtag('event', 'exception', {
+    description: error.message,
+    fatal
+  })
