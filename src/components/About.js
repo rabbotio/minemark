@@ -24,6 +24,9 @@ const Chatz = styled.div`
 .ios7 strong {
 	font-weight: 500;
 }
+.ios7 dd {
+  position: relative;
+}
 .ios7 dt {
 	margin-bottom: 1em;
 	text-align: center;
@@ -133,10 +136,12 @@ const Chatz = styled.div`
 .ios7 .you {
   width: 32px;
   height: 32px;
-	position: absolute;
-	margin-left: -200px;
-  border-radius: 100%;
+  position: absolute;
+  margin-left: -40px;
   transform: scaleX(-1);
+  bottom: 2px;
+  float: left;
+  display: block;
 }
 `
 
@@ -146,42 +151,42 @@ let data = [
     uid: '1',
     name: 'pignoom',
     img: './kat.png',
-    msg: `So... you want to know more?`
+    msgs: [`So... you want to know more?`]
   },
   {
     id: 1,
     uid: '0',
     name: 'katopz',
     img: './foo.png',
-    msg: `Yes! What the heck is this?`
+    msgs: [`Yes! What the heck is this?`]
   },
   {
     id: 2,
     uid: '1',
     name: 'pignoom',
     img: './kat.png',
-    msg: `AFAIK it's version ${version}`
+    msgs: [`AFAIK it's just version ${version}`, `More features will come pretty soon!`]
   },
   {
     id: 3,
     uid: '0',
     name: 'katopz',
     img: './foo.png',
-    msg: `So I can expect more feature?`
+    msgs: [`So I can expect more feature?`]
   },
   {
     id: 4,
     uid: '1',
     name: 'pignoom',
     img: './kat.png',
-    msg: `Yes! ping katopz@rabbot.io for more`
+    msgs: [`Yes! do subscribe below`, `I'll keep you post about an update!`]
   },
   {
     id: 5,
     uid: '0',
     name: 'katopz',
     img: './foo.png',
-    msg: `Nice! Thanks!`
+    msgs: [`Nice! Will do, thanks!`]
   }
 ]
 
