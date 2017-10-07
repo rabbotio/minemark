@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import ClientInfo from './lib/clientInfo'
 import Runner from './lib/Runner'
 import { downloadPNG } from './lib/canvas-download'
-import { initGA, trackPageView, trackEvent } from './lib/analytics'
+import { initGA, trackEvent } from './lib/analytics'
 
 // Services
 import Model from './model'
