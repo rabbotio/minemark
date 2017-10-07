@@ -9,6 +9,7 @@ import { initGA, trackPageView, trackEvent } from './lib/analytics'
 // Services
 import Model from './model'
 import { getDeviceRanking, collect } from './model/Ranking'
+import { data } from './model/data.json'
 
 // Components
 import Head from './components/Head'
@@ -20,7 +21,8 @@ import Cars from './components/Cars'
 import CoinHive from './components/CoinHive'
 // TODO // import { onShare } from './components/Share'
 import { Buttonz } from './styles/buttons'
-import { icon_camera } from './styles/icons'
+import { icon_about } from './styles/icons'
+import About from './components/About'
 
 // Styles
 import styled from 'styled-components'
@@ -48,43 +50,7 @@ class App extends Component {
     this.model = new Model()
 
     // Ranking
-    const ranking = [
-      {
-        min: 21.27,
-        max: 32.44,
-        thread: 4,
-        browserName: 'Chrome',
-        browserVersion: '60.0.3112.113'
-      },
-      {
-        min: 19.61,
-        max: 24.23,
-        thread: 4,
-        browserName: 'Firefox',
-        browserVersion: '60.0.3112.113'
-      },
-      {
-        min: 15.77,
-        max: 18.45,
-        thread: 4,
-        browserName: 'Safari',
-        browserVersion: '60.0.3112.113'
-      },
-      {
-        min: 7.54,
-        max: 8.98,
-        thread: 4,
-        browserName: 'Edge',
-        browserVersion: '60.0.3112.113'
-      },
-      {
-        min: 5.54,
-        max: 6.98,
-        thread: 4,
-        browserName: 'Opera',
-        browserVersion: '1.2.1'
-      }
-    ]
+    const ranking = data.allDevices
 
     this.state = {
       status: `INIT`,
@@ -157,7 +123,7 @@ class App extends Component {
 
     // Pull new data
     const ranking = await getDeviceRanking(this.props.client)
-    this.setState({ ranking })
+    this.setState({ ranking, isShowAbout: false })
   }
 
   componentWillUnmount = () => this.runner.stopLoop()
@@ -175,8 +141,13 @@ class App extends Component {
   }
 
   onSaveClick = e => {
+    // TODO : Work only chrome and opera
     downloadPNG(this.svg, `minemark-${+new Date()}.png`).catch(alert)
     trackEvent('save')
+  }
+
+  onClickAbout = e => {
+    this.setState({ isShowAbout: !this.state.isShowAbout })
   }
 
   render () {
@@ -196,10 +167,11 @@ class App extends Component {
             onAccepted={() => this.onAccepted()}
             onError={err => this.onError(err)}
           />
-          <Buttonz onClick={e => this.onSaveClick(e)}>
-            {icon_camera}
-            <span>SAVE</span>
+          <Buttonz onClick={e => this.onClickAbout(e)}>
+            {icon_about}
+            <span>ABOUT</span>
           </Buttonz>
+          <About isShowAbout={this.state.isShowAbout} />
           <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
         </Containerz>
       </div>

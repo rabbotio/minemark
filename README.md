@@ -18,8 +18,8 @@ yarn start
 - [x] Google Analytics
 - [x] Default og:image http://ogp.me/
 - [x] Icons
+- [x] About
 - [ ] Server
-- [ ] FAQ
 
 ## TOTEST
 - [ ] Share on Facebook 476 x 249

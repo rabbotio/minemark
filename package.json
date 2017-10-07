@@ -1,6 +1,6 @@
 {
   "name": "coin-hive-mining-benchmark",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "apollo-client": "^1.9.3",
@@ -15,6 +15,7 @@
     "react-helmet": "^5.2.0",
     "react-scripts": "1.0.14",
     "styled-components": "^2.2.1",
+    "timeago.js": "^3.0.2",
     "ua-parser-js": "^0.7.14",
     "uuid": "^3.1.0"
   },
@@ -22,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "update": "curl https://coinhive.com/lib/coinhive.min.js > ./public/ch.js"
   }
 }

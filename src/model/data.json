@@ -1,0 +1,46 @@
+{
+  "data": {
+    "allDevices": [
+      {
+        "__typename": "Device",
+        "min": 30.36116689987535,
+        "browserVersion": "11.0",
+        "browserName": "Safari",
+        "thread": 2,
+        "max": 36.99011347046585
+      },
+      {
+        "__typename": "Device",
+        "min": 23.66554216179687,
+        "browserVersion": "56.0",
+        "browserName": "Firefox",
+        "thread": 2,
+        "max": 34.18034828656287
+      },
+      {
+        "__typename": "Device",
+        "min": 22.52721532191329,
+        "browserVersion": "61.0.3163.100",
+        "browserName": "Chrome",
+        "thread": 2,
+        "max": 30.08815670618244
+      },
+      {
+        "__typename": "Device",
+        "min": 20.342209803972718,
+        "browserVersion": "61.0.3163.100",
+        "browserName": "Chrome",
+        "thread": 2,
+        "max": 27.096305835113405
+      },
+      {
+        "__typename": "Device",
+        "min": 16.9451856855394,
+        "browserVersion": "48.0.2685.35",
+        "browserName": "Opera",
+        "thread": 2,
+        "max": 25.658072141752605
+      }
+    ]
+  }
+}
