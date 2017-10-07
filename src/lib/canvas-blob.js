@@ -15,7 +15,6 @@
 /* global atob, Blob, define */
 
 ;(function (window) {
-  'use strict'
   var CanvasPrototype = window.HTMLCanvasElement && window.HTMLCanvasElement.prototype
   var hasBlobConstructor =
     window.Blob &&
