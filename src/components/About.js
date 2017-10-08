@@ -135,6 +135,8 @@ const Chatz = styled.div`
   margin-left: 8px;
   border-radius: 100%;
   transform: scaleX(-1);
+  bottom: 2px;
+  display: block;
 }
 .ios7 .you {
   width: 32px;
