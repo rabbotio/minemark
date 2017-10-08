@@ -3,6 +3,7 @@ import timeago from 'timeago.js'
 
 import Msg from './Msg'
 import { version } from '../../package.json'
+import Subscription from './Subscription'
 
 // Styles
 import styled from 'styled-components'
@@ -200,18 +201,18 @@ let _startTime
 const stamp = () => _startTime || +new Date()
 const ago = () => timeago().format(_startTime)
 
-const About = ({ isShowAbout }) => (
-  <div>
-    {isShowAbout
-      ? stamp() &&
+const About = ({ isShowAbout, persistanceData }) =>
+  (isShowAbout
+    ? stamp() &&
+    <div>
       <Chatz>
         <dl className='ios7'>
           <dt><strong>Today</strong> {ago()}</dt>
           {data.map(item => <Msg key={item.id} {...item} />)}
         </dl>
       </Chatz>
-      : <div />}
-  </div>
-)
+      <Subscription persistanceData={persistanceData} />
+    </div>
+    : <div />)
 
 export default About

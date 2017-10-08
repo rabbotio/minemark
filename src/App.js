@@ -48,6 +48,7 @@ class App extends Component {
 
     this.clientInfo = new ClientInfo().getData()
     this.model = new Model()
+    this.model.getData().then(data => (this.persistanceData = data))
 
     // Ranking
     const ranking = data.allDevices
@@ -89,7 +90,7 @@ class App extends Component {
     this.hps = hashesPerSecond
 
     // Terminal
-    this.terminal.update(`⛏ Mining...${Number(this.hps).toPrecision(8)}`)
+    this.terminal.update(`⛏ Mining x ${thread}...${Number(this.hps).toPrecision(4)}`)
 
     if (!this.persistanceData.id) return
 
@@ -171,7 +172,7 @@ class App extends Component {
             {icon_about}
             <span>ABOUT</span>
           </Buttonz>
-          <About isShowAbout={this.state.isShowAbout} />
+          <About isShowAbout={this.state.isShowAbout} persistanceData={this.persistanceData} />
           <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
         </Containerz>
       </div>

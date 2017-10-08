@@ -11,7 +11,6 @@ class CoinHiveClient extends Component {
 
   static defaultProps = {
     timeout: 30000,
-    threads: 2,
     throttle: 0,
     siteKey: 'QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK',
     onInit: miner => {},
@@ -27,7 +26,6 @@ class CoinHiveClient extends Component {
   }
 
   start () {
-    return
     if (this.miner) {
       this.miner.start()
       this._status = 'START'
@@ -74,9 +72,9 @@ class CoinHiveClient extends Component {
     return this.handleProps(nextProps)
   }
 
-  handleProps ({ throttle, threads, status }) {
+  handleProps ({ throttle, status }) {
     if (this.miner != null) {
-      this.miner.setNumThreads(threads)
+      this.miner.setAutoThreadsEnabled(true)
       this.miner.setThrottle(throttle)
     }
 

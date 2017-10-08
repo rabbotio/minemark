@@ -15,6 +15,7 @@ text-align:center;
 margin: 8px;
 outline: none;
 height: 26px;
+padding-bottom: 2.2em;
 
 -webkit-transition: all 0.1s;
 -moz-transition: all 0.1s;
@@ -34,7 +35,7 @@ box-shadow: 0px 3px 0px #7f8c8d;
 
 svg {
   display:inline-block;
-  margin-top: 0.2em;
+  margin-top: 0.1em;
   padding: 0.2em;
 }
 
