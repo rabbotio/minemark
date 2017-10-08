@@ -7,6 +7,8 @@ import { version } from '../../package.json'
 // Styles
 import styled from 'styled-components'
 const YOU_BG_COLOR = '#ecf0f1'
+const ME_BG_COLOR = '#3498db'
+
 const Chatz = styled.div`
 * {
   margin: 0;
@@ -62,7 +64,7 @@ const Chatz = styled.div`
 	float: right;
 	margin-right: 0;
 	margin-left: 25%;
-	background: rgb(0,120,255);
+	background: ${ME_BG_COLOR};
 	color: #fff;
 }
 .ios7 p + p {
@@ -87,7 +89,7 @@ const Chatz = styled.div`
 	right: -3em;
 	left: auto;
 	border-right: none;
-	border-left: 1.5em solid rgb(0,120,255);
+	border-left: 1.5em solid ${ME_BG_COLOR};
 	border-bottom-left-radius: 50%;
 	clip: rect(1em,2em,2em,0);
 }
@@ -165,21 +167,24 @@ let data = [
     uid: '1',
     name: 'pignoom',
     img: './kat.png',
-    msgs: [`AFAIK it's just version ${version}`, `More features will come pretty soon!`]
+    msgs: [`AFAIK it's version ${version}`, `It use React, Apollo GraphQL for front and GraphCool for backend`, `More features will come pretty soon!`]
   },
   {
     id: 3,
     uid: '0',
     name: 'katopz',
     img: './foo.png',
-    msgs: [`So I can expect more feature?`]
+    msgs: [`So I can expect more features?`]
   },
   {
     id: 4,
     uid: '1',
     name: 'pignoom',
     img: './kat.png',
-    msgs: [`Yes! do subscribe below`, `I'll keep you post about an update!`]
+    msgs: [
+      `Yes! It show only top five now, more results and graph will come pretty soon`,
+      `Do subscribe below for next update. I'll keep you post about that!`
+    ]
   },
   {
     id: 5,
@@ -195,15 +200,18 @@ let _startTime
 const stamp = () => _startTime || +new Date()
 const ago = () => timeago().format(_startTime)
 
-const About = ({ isShowAbout }) =>
-  (isShowAbout
-    ? stamp() &&
-    <Chatz>
-      <dl className='ios7'>
-        <dt><strong>Today</strong> {ago()}</dt>
-        {data.map(item => <Msg key={item.id} {...item} />)}
-      </dl>
-    </Chatz>
-    : <div />)
+const About = ({ isShowAbout }) => (
+  <div>
+    {isShowAbout
+      ? stamp() &&
+      <Chatz>
+        <dl className='ios7'>
+          <dt><strong>Today</strong> {ago()}</dt>
+          {data.map(item => <Msg key={item.id} {...item} />)}
+        </dl>
+      </Chatz>
+      : <div />}
+  </div>
+)
 
 export default About
