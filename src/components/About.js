@@ -170,24 +170,21 @@ let data = [
     uid: '1',
     name: 'pignoom',
     img: './kat.png',
-    msgs: [`AFAIK it's version ${version}`, `It use React, Apollo GraphQL for front and GraphCool for backend`, `More features will come pretty soon!`]
+    msgs: [`AFAIK it's version ${version}`, `It use React, Apollo GraphQL for front-end GraphCool for back-end`]
   },
   {
     id: 3,
     uid: '0',
     name: 'katopz',
     img: './foo.png',
-    msgs: [`So I can expect more features?`]
+    msgs: [`So...What's next?`]
   },
   {
     id: 4,
     uid: '1',
     name: 'pignoom',
     img: './kat.png',
-    msgs: [
-      `Yes! It show only top five now, more results and graph will come pretty soon`,
-      `Do subscribe below for next update. I'll keep you post about that!`
-    ]
+    msgs: [`Subscribe below, I'll keep you post!`]
   },
   {
     id: 5,

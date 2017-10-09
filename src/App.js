@@ -52,7 +52,7 @@ class App extends Component {
     initGA()
 
     // Action
-    this.search = queryString.parse(window.location.search)
+    this.search = window.location.search && queryString.parse(window.location.search)
 
     this.clientInfo = new ClientInfo().getData()
     this.model = new Model()
@@ -160,6 +160,7 @@ class App extends Component {
 
   onClickAbout = e => {
     this.setState({ isShowAbout: !this.state.isShowAbout })
+    trackEvent('about')
   }
 
   render () {
