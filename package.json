@@ -11,6 +11,7 @@
     "localforage": "^1.5.0",
     "material-ui": "^0.19.3",
     "nano-md5": "^1.0.3",
+    "query-string": "^5.0.0",
     "react": "^16.0.0",
     "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0",

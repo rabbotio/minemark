@@ -1,0 +1,26 @@
+{
+  "event": "{\"data\":{\"User\":{\"updatedFields\":null,\"node\":{\"id\":\"cj8izxo7jufe5015955kxhkoo\",\"email\":\"katopz@gmail.com\"}}},\"context\":{\"request\":{\"sourceIp\":\"\",\"headers\":{},\"httpMethod\":\"post\"},\"auth\":null,\"sessionCache\":{},\"environment\":{},\"graphcool\":{\"projectId\":\"cj82k7wkh0bqq0177qv1vbb8r\",\"alias\":null,\"pat\":null}}}",
+  "logs": [
+    "2017-10-08T17:02:05.790Z: \"mailgun\"",
+    "2017-10-08T17:02:05.791Z: \"mailgun.messages\"",
+    "2017-10-08T17:02:06.191Z: \"Sent:\""
+  ],
+  "returnValue": {
+    "logs": [
+      "2017-10-08T17:02:05.790Z: \"mailgun\"",
+      "2017-10-08T17:02:05.791Z: \"mailgun.messages\"",
+      "2017-10-08T17:02:06.191Z: \"Sent:\""
+    ],
+    "response": {
+      "data": {
+        "User": {
+          "updatedFields": null,
+          "node": {
+            "id": "cj8izxo7jufe5015955kxhkoo",
+            "email": "katopz@gmail.com"
+          }
+        }
+      }
+    }
+  }
+}

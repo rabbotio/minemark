@@ -5,6 +5,7 @@ import ClientInfo from './lib/clientInfo'
 import Runner from './lib/Runner'
 import { downloadPNG } from './lib/canvas-download'
 import { initGA, trackEvent } from './lib/analytics'
+import queryString from 'query-string'
 
 // Services
 import Model from './model'
@@ -12,6 +13,7 @@ import { getDeviceRanking, collect } from './model/Ranking'
 import { data } from './model/data.json'
 
 // Components
+import ActionPage from './pages/ActionPage'
 import Head from './components/Head'
 import Logo from './components/Logo'
 import Stage from './components/Stage'
@@ -28,7 +30,10 @@ import About from './components/About'
 import styled from 'styled-components'
 
 const Containerz = styled.div`
-  text-align: center
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  
 `
 const ShadowContainerz = styled.div`
 width: fit-content;
@@ -45,6 +50,9 @@ class App extends Component {
     super(props)
 
     initGA()
+
+    // Action
+    this.search = queryString.parse(window.location.search)
 
     this.clientInfo = new ClientInfo().getData()
     this.model = new Model()
@@ -105,6 +113,9 @@ class App extends Component {
   onError = err => this.terminal.update(`🔥 Error! ${err}`)
 
   componentDidMount = async () => {
+    // Action
+    if (this.search) return
+
     // SVG
     this.svg = document.getElementById('svg')
 
@@ -124,7 +135,7 @@ class App extends Component {
 
     // Pull new data
     const ranking = await getDeviceRanking(this.props.client)
-    this.setState({ ranking, isShowAbout: false })
+    this.setState({ ranking, isShowAbout: true })
   }
 
   componentWillUnmount = () => this.runner.stopLoop()
@@ -152,6 +163,10 @@ class App extends Component {
   }
 
   render () {
+    // Action
+    if (this.search) return <ActionPage client={this.props.client} search={this.search} />
+
+    // Main
     return (
       <div>
         <Head />
@@ -172,7 +187,7 @@ class App extends Component {
             {icon_about}
             <span>ABOUT</span>
           </Buttonz>
-          <About isShowAbout={this.state.isShowAbout} persistanceData={this.persistanceData} />
+          <About client={this.props.client} isShowAbout={this.state.isShowAbout} persistanceData={this.persistanceData} />
           <div style={{ width: 0, height: 0, overflow: 'hidden' }}><canvas id='canvas' width='640' height='640' /></div>
         </Containerz>
       </div>

@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 
 // Library
 import is from 'is_js'
+import { gql } from 'react-apollo'
 import { Buttonz } from '../styles/buttons'
 
 // Material-UI
 import TextField from 'material-ui/TextField'
 
 // Theme
-import { deepOrange500 } from 'material-ui/styles/colors'
+import { deepOrange500, blue500 } from 'material-ui/styles/colors'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
@@ -58,13 +59,28 @@ class Subscription extends Component {
     // TODO : mutation add email, device id, uid
     const { id, uuid } = this.persistanceData
     console.log(id, uuid, email)
+
+    this.props.client.mutate({
+      mutation: gql`mutation createUser {
+        createUser(
+          email: "${email}"
+        ) {
+          id
+        }
+      }`
+    })
   }
 
   render () {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <Formz onSubmit={this.onSubmit}>
-          <TextField ref='email' floatingLabelText='Fill your email here' />
+          <TextField
+            ref='email'
+            underlineStyle={{ borderColor: blue500 }}
+            floatingLabelText=' Fill email here, I will keep you post.'
+            defaultValue='katopz@gmail.com'
+          />
           <br />
           <Buttonz type='submit'>
             {icon_email}

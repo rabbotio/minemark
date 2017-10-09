@@ -203,7 +203,7 @@ let _startTime
 const stamp = () => _startTime || +new Date()
 const ago = () => timeago().format(_startTime)
 
-const About = ({ isShowAbout, persistanceData }) =>
+const About = ({ isShowAbout, persistanceData, client }) =>
   (isShowAbout
     ? stamp() &&
     <div>
@@ -213,7 +213,7 @@ const About = ({ isShowAbout, persistanceData }) =>
           {data.map(item => <Msg key={item.id} {...item} />)}
         </dl>
       </Chatz>
-      <Subscription persistanceData={persistanceData} />
+      <Subscription client={client} persistanceData={persistanceData} />
     </div>
     : <div />)
 
