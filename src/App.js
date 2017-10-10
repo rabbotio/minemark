@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import ClientInfo from './lib/clientInfo'
 import Runner from './lib/Runner'
 import { downloadPNG } from './lib/canvas-download'
-import { initGA, trackEvent } from './lib/analytics'
+import { initGA, trackEvent, trackScreen } from './lib/analytics'
 import queryString from 'query-string'
 
 // Services
@@ -49,7 +49,7 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    initGA()
+    initGA('MineMark')
 
     // Action
     this.search = window.location.search && queryString.parse(window.location.search)
@@ -115,6 +115,9 @@ class App extends Component {
   componentDidMount = async () => {
     // Action
     if (this.search) return
+
+    // Track
+    trackScreen('home')
 
     // SVG
     this.svg = document.getElementById('svg')

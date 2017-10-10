@@ -35,7 +35,14 @@ module.exports = function (event) {
       }
 
       console.info('Sent:', body)
-      resolve({ data: event.data.User.node })
+      const node = event.data.User.node
+      resolve({
+        data: {
+          id: node.id,
+          email: node.email,
+          emailVerified: node.emailVerified
+        }
+      })
     })
   })
 }

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 // Library
 import is from 'is_js'
 import { gql } from 'react-apollo'
-import { trackEvent, trackException } from '../lib/analytics'
+import { trackScreen, trackEvent, trackException } from '../lib/analytics'
 
 import { Buttonz } from '../styles/buttons'
 
@@ -30,6 +30,9 @@ class ActionPage extends Component {
 
     const { search } = this.props
 
+    // Track
+    trackScreen(search.action)
+
     this.state = { status: 'EMPTY_QUERY' }
     if (search.action === 'verify') this.verify(search.id)
   }
@@ -42,7 +45,8 @@ class ActionPage extends Component {
       return
     }
 
-    trackEvent('verrify')
+    // Track
+    trackEvent('verify', { id })
 
     // Mark as verify
     this.props.client
@@ -57,10 +61,11 @@ class ActionPage extends Component {
       }`
       })
       .then(({ emailVerified }) => {
-        trackEvent('vefified')
+        trackEvent('verified.succeed', { id })
         this.setState({ status: 'VERIFIED' })
       })
       .catch(err => {
+        trackEvent('verify.failed', { id, err })
         trackException(err)
         this.setState({ status: 'NOT_VERIFIED' })
       })
@@ -68,6 +73,7 @@ class ActionPage extends Component {
 
   onClickHome = e => {
     window.location.href = window.location.origin
+    trackEvent('go', { page: window.location.origin })
   }
 
   render () {

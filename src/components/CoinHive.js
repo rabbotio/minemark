@@ -26,7 +26,6 @@ class CoinHiveClient extends Component {
   }
 
   start () {
-    return
     if (this.miner) {
       this.miner.start()
       this._status = 'START'
