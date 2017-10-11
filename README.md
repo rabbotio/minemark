@@ -23,12 +23,14 @@ yarn start
 - [x] Use path /minemark
 
 ## TOFIX
-- [ ] Mobile Safari not load
-- [ ] Firefox not load
+- [x] Mobile Safari not load
+- [x] Firefox not load
+- [x] Edge not load
+- [x] IE not load
 
 ## TOTEST
-- [ ] Share on Facebook 476 x 249
-- [ ] Share on Twitter 506 x 254
+- [x] Share on Facebook 476 x 249
+- [x] Share on Twitter 506 x 254
 - [ ] Share on iOS
 - [x] Save on iOS
 - [ ] Share on Android
