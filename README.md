@@ -20,7 +20,11 @@ yarn start
 - [x] Icons
 - [x] About
 - [x] Server
-- [ ] Use path /minemark
+- [x] Use path /minemark
+
+## TOFIX
+- [ ] Mobile Safari not load
+- [ ] Firefox not load
 
 ## TOTEST
 - [ ] Share on Facebook 476 x 249
