@@ -33,8 +33,15 @@ class ActionPage extends Component {
     // Track
     trackScreen(search.action)
 
-    this.state = { status: 'EMPTY_QUERY' }
-    if (search.action === 'verify') this.verify(search.id)
+    // Default status
+    let status = 'EMPTY_QUERY'
+
+    if (search.action === 'verify') {
+      status = 'VERIFY'
+      this.verify(search.id)
+    }
+
+    this.state = { status }
   }
 
   verify = id => {
@@ -82,6 +89,7 @@ class ActionPage extends Component {
         {
           {
             EMPTY_QUERY: <div>Something gone wrong!?</div>,
+            VERIFY: <div>Subscribing, Please wait...</div>,
             VERIFIED: <div>You has been subscribe to our mailing list! Thanks!</div>,
             NOT_VERIFIED: <div>Something gone wrong! Please try again later.</div>
           }[this.state.status]
