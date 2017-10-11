@@ -72,8 +72,8 @@ class ActionPage extends Component {
   }
 
   onClickHome = e => {
-    window.location.href = window.location.origin
     trackEvent('go', { page: window.location.origin })
+    window.location.href = window.location.origin + window.location.pathname
   }
 
   render () {
