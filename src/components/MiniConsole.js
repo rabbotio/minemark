@@ -1,10 +1,10 @@
 const decorateMiniConsole = (draw, ox, oy) => {
-  return ['Hmm...', '', '', '', ''].map(index =>
+  return ['Hmm...', '', '', '', ''].map((msg, index) =>
     draw.text({
       x: ox,
       y: oy - index * 9,
       id: `line${index}`,
-      text: index,
+      text: msg,
       fill: 'gray'
     })
   )
