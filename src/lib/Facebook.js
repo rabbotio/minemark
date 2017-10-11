@@ -15,7 +15,7 @@ class Facebook {
         })
         resolve(window.FB)
       })
-    })
+    }).catch(console.warn)
 
   postBlob = async ({ token, blob, filename, message }) => {
     const formData = new FormData()

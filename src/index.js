@@ -8,6 +8,9 @@ import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import App from './App'
 import './index.css'
 
+import { initGA } from './lib/analytics'
+initGA()
+
 const GRAPHQL_END_POINT = 'https://api.graph.cool/simple/v1/cj82k7wkh0bqq0177qv1vbb8r'
 
 export const start = () => {

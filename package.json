@@ -1,5 +1,5 @@
 {
-  "name": "coin-hive-mining-benchmark",
+  "name": "MineMark",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -28,6 +28,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "update": "curl https://coinhive.com/lib/coinhive.min.js > ./public/ch.js"
-  }
+    "update": "curl https://coinhive.com/lib/coinhive.min.js > ./public/ch.js",
+    "index": "scp -r ./deploy/html root@rabbot.io:/var/www",
+    "deploy": "npm run build && cd build && rsync -Praz --exclude '.DS_Store' . root@rabbot.io:/var/www/html/minemark",
+    "nginx": "scp -r ./deploy/default.conf root@rabbot.io:/etc/nginx/conf.d/default.conf && ssh root@rabbot.io 'nginx -t && nginx -s reload'"
+  },
+  "homepage": "."
 }

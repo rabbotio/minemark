@@ -19,7 +19,8 @@ yarn start
 - [x] Default og:image http://ogp.me/
 - [x] Icons
 - [x] About
-- [ ] Server
+- [x] Server
+- [ ] Use path /minemark
 
 ## TOTEST
 - [ ] Share on Facebook 476 x 249

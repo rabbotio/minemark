@@ -1,8 +1,9 @@
 import loadScript from 'load-script'
+import { name, version } from '../../package.json'
 
-const GA_TRACKING_ID = 'UA-107529694-1'
 const _isDebug = process.env.NODE_ENV !== 'production'
-let app_name
+const GA_TRACKING_ID = 'UA-107529694-1'
+let app_name = `${name}-${version}`
 
 const gtag = (...args) => {
   if (!window.dataLayer) {
@@ -13,16 +14,16 @@ const gtag = (...args) => {
   window.dataLayer.push(...args)
 }
 
-export const initGA = (appName = '') =>
+export const initGA = (appName = app_name) =>
   new Promise(resolve =>
     loadScript(`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`, () => {
       _isDebug && console.info('gtag init')
       window.dataLayer = window.dataLayer || []
-      app_name = appName
+      console.log('window.dataLayer:', window.dataLayer)
       gtag('js', new Date())
       trackPageView()
     })
-  )
+  ).catch(console.warn)
 
 export const trackPageView = (options = {}) => gtag('config', GA_TRACKING_ID, options)
 

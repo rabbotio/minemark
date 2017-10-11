@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import ClientInfo from './lib/clientInfo'
 import Runner from './lib/Runner'
 import { downloadPNG } from './lib/canvas-download'
-import { initGA, trackEvent, trackScreen } from './lib/analytics'
+import { trackEvent, trackScreen } from './lib/analytics'
 import queryString from 'query-string'
 
 // Services
@@ -14,7 +14,6 @@ import { data } from './model/data.json'
 
 // Components
 import ActionPage from './pages/ActionPage'
-import Head from './components/Head'
 import Logo from './components/Logo'
 import Stage from './components/Stage'
 import Meter from './components/Meter'
@@ -48,8 +47,6 @@ const COIN_HIVE_SITE_KEY = 'QCLjDlh3Kllh2aj3P0cW6as65eZH3oeK'
 class App extends Component {
   constructor (props) {
     super(props)
-
-    initGA('MineMark')
 
     // Action
     this.search = window.location.search && queryString.parse(window.location.search)
@@ -138,7 +135,7 @@ class App extends Component {
 
     // Pull new data
     const ranking = await getDeviceRanking(this.props.client)
-    this.setState({ ranking, isShowAbout: true })
+    this.setState({ ranking, isShowAbout: false })
   }
 
   componentWillUnmount = () => this.runner.stopLoop()
@@ -173,7 +170,6 @@ class App extends Component {
     // Main
     return (
       <div>
-        <Head />
         <Containerz>
           <Logo />
           <ShadowContainerz>
