@@ -26,11 +26,11 @@ transition: all 0.1s;
 box-shadow: 0px 3px 0px #7f8c8d;
 
 :active{
-    -webkit-box-shadow: 0px 2px 0px #7f8c8d;
-    -moz-box-shadow: 0px 2px 0px #7f8c8d;
-    box-shadow: 0px 2px 0px #7f8c8d;
-    position:relative;
-    top:4px;
+  -webkit-box-shadow: 0px 2px 0px #7f8c8d;
+  -moz-box-shadow: 0px 2px 0px #7f8c8d;
+  box-shadow: 0px 2px 0px #7f8c8d;
+  position:relative;
+  top:4px;
 }
 
 svg {

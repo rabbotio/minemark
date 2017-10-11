@@ -15,13 +15,24 @@ class clientInfo {
     return result
   }
 
-  getCPU = architecture => {
-    return architecture || this.ua.getUA().includes('Intel') ? 'Intel' : 'unknown'
+  maybeIntel = () => {
+    try {
+      return this.ua.getUA().includes('Intel') ? 'Intel' : 'unknown'
+    } catch (err) {
+      return 'unknown'
+    }
   }
 
-  getVendor = vendor => {
-    return vendor || this.ua.getUA().includes('Apple') ? 'Apple' : 'unknown'
+  maybeApple = () => {
+    try {
+      return this.ua.getUA().includes('Apple') ? 'Apple' : 'unknown'
+    } catch (err) {
+      return 'unknown'
+    }
   }
+
+  getCPU = architecture => architecture || this.maybeIntel()
+  getVendor = vendor => vendor || this.maybeApple()
 }
 
 export default clientInfo
