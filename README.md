@@ -26,7 +26,7 @@ yarn start
 - [x] Mobile Safari not load
 - [x] Firefox not load
 - [x] Edge not load
-- [x] IE not load
+- [ ] IE not load
 
 ## TOTEST
 - [x] Share on Facebook 476 x 249
