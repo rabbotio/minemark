@@ -1,0 +1,24 @@
+{
+  "name": "webtask-oauth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "oauth.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "deploy": "wt create oauth.js --ignore-package-json --no-parse --no-merge --secrets-file .env",
+    "prod": "npm run build && npm run deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "katopz",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^8.0.26",
+    "typescript": "^2.5.2"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "oauth": "^0.9.15"
+  }
+}
