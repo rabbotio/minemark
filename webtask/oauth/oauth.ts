@@ -25,7 +25,8 @@ const willGetOAuthAccessToken = async (twitterConsumerKey, twitterConsumerSecret
 
 // Twitter API
 require('isomorphic-fetch')
-const option = token => ({
+const option = (token, method = 'GET') => ({
+  method,
   headers: {
     Authorization: `Bearer ${token}`
   }
@@ -35,7 +36,7 @@ const user_timeline = (token, screen_name) =>
   fetch(`https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${screen_name}`, option(token))
 
 const update = (token, status) =>
-  fetch(`https://api.twitter.com/1.1/statuses/update.json?status=${status}`, option(token))
+  fetch(`https://api.twitter.com/1.1/statuses/update.json?status=${status}`, option(token, 'POST'))
 
 // Express
 const express = require('express')
@@ -44,8 +45,8 @@ const app = express()
 app.get('/', (req, res) =>
   willGetOAuthAccessToken(twitterConsumerKey, twitterConsumerSecret)
     .then(access_token => {
-      // update(access_token, 'https://rabbot.io/minemark')
-      user_timeline(access_token, 'katopz')
+      update(access_token, 'Test!')
+        //user_timeline(access_token, 'katopz')
         .then(response => response.json()
           .then(json => res.send(json)))
         .catch((err) => console.error(err.message));

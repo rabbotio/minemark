@@ -54,16 +54,20 @@ var willGetOAuthAccessToken = function (twitterConsumerKey, twitterConsumerSecre
 }); };
 // Twitter API
 require('isomorphic-fetch');
-var option = function (token) { return ({
-    headers: {
-        Authorization: "Bearer " + token
-    }
-}); };
+var option = function (token, method) {
+    if (method === void 0) { method = 'GET'; }
+    return ({
+        method: method,
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    });
+};
 var user_timeline = function (token, screen_name) {
     return fetch("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + screen_name, option(token));
 };
 var update = function (token, status) {
-    return fetch("https://api.twitter.com/1.1/statuses/update.json?status=" + status, option(token));
+    return fetch("https://api.twitter.com/1.1/statuses/update.json?status=" + status, option(token, 'POST'));
 };
 // Express
 var express = require('express');
@@ -71,8 +75,7 @@ var app = express();
 app.get('/', function (req, res) {
     return willGetOAuthAccessToken(twitterConsumerKey, twitterConsumerSecret)
         .then(function (access_token) {
-        // update(access_token, 'https://rabbot.io/minemark')
-        user_timeline(access_token, 'katopz')
+        update(access_token, 'Test!')
             .then(function (response) { return response.json()
             .then(function (json) { return res.send(json); }); })
             .catch(function (err) { return console.error(err.message); });
