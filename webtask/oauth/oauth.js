@@ -34,8 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var twitterConsumerKey = 'RlLbTDcVvvDjKsiygbwuf4cTv';
-var twitterConsumerSecret = 'y4JAKA0evhrvBgixnXrbPLKLatnfjkJtPi3Md8hgLuTxiDlvEu';
+var twitterConsumerKey = 'KEY';
+var twitterConsumerSecret = 'SECRET';
 var willGetOAuthAccessToken = function (twitterConsumerKey, twitterConsumerSecret) { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         return [2 /*return*/, new Promise(function (resolve, reject) {

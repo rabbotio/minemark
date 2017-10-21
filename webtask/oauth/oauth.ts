@@ -1,5 +1,5 @@
-const twitterConsumerKey = 'RlLbTDcVvvDjKsiygbwuf4cTv';
-const twitterConsumerSecret = 'y4JAKA0evhrvBgixnXrbPLKLatnfjkJtPi3Md8hgLuTxiDlvEu';
+const twitterConsumerKey = 'KEY';
+const twitterConsumerSecret = 'SECRET';
 
 const willGetOAuthAccessToken = async (twitterConsumerKey, twitterConsumerSecret) => new Promise<string>((resolve, reject) => {
   const { OAuth2 } = require('oauth');
