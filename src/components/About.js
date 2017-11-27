@@ -170,7 +170,11 @@ let data = [
     uid: '1',
     name: 'pignoom',
     img: './kat.png',
-    msgs: [`AFAIK it's version ${version}`, `It use React, Apollo GraphQL for front-end GraphCool for back-end`]
+    msgs: [
+      `AFAIK it'll benchmark your browser with CoinHive mining.`,
+      `it's version ${version},use React, Apollo GraphQL, GraphCool`,
+      `It's also open source here https://github.com/rabbotio/minemark`
+    ]
   },
   {
     id: 3,
