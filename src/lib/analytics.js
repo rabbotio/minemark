@@ -1,7 +1,5 @@
-import loadScript from 'load-script'
 import { name, version } from '../../package.json'
 
-const _isDebug = process.env.NODE_ENV !== 'production'
 const GA_TRACKING_ID = 'UA-107529694-1'
 
 let app_name = `${name}-${version}`
