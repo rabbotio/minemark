@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 
 // apollo imports
 import { ApolloProvider } from 'react-apollo'
-import ApolloClient, { createNetworkInterface } from 'apollo-client'
+import ApolloClient from 'apollo-client'
+import { HttpLink, InMemoryCache } from 'apollo-client-preset'
 
 import App from './App'
 import './index.css'
@@ -12,9 +13,8 @@ const GRAPHQL_END_POINT = 'https://api.graph.cool/simple/v1/cj82k7wkh0bqq0177qv1
 
 export const start = () => {
   const client = new ApolloClient({
-    networkInterface: createNetworkInterface({
-      uri: GRAPHQL_END_POINT
-    })
+    link: new HttpLink({ uri: GRAPHQL_END_POINT }),
+    cache: new InMemoryCache().restore({})
   })
 
   const WrappedApp = (
