@@ -4,7 +4,7 @@ const getDeviceRanking = async client =>
   client
     .query({
       query: gql`{
-      allDevices(first: 5, orderBy: max_DESC) {
+      allDevices(first: 10, orderBy: max_DESC) {
         browserName
         browserVersion
         thread

@@ -9,12 +9,13 @@ const Stage = ({ clientInfo, ranking }) => {
   const hps = '0.000'
 
   let y = 32
+  const height = 380
 
   // Canvas
-  const draw = new SVG('320', '320')
+  const draw = new SVG('320', `${height}`)
 
   // Border
-  draw.rect({ x: 0, y: 0, width: 320, height: 320, fill: '#FFFFFF' })
+  draw.rect({ x: 0, y: 0, width: 320, height, fill: '#FFFFFF' })
 
   // Console
   decorateMiniConsole(draw, 320 / 2 + 56, 80)
@@ -69,11 +70,11 @@ const Stage = ({ clientInfo, ranking }) => {
   // Copy
   draw.text({
     x: 320 / 2,
-    y: 320 - 24,
+    y: height - 24,
     fontSize: 9,
     fill: 'gray',
     textAnchor: 'middle',
-    text: 'COPYRIGHT 2017 ❤ RABBOT.IO'
+    text: 'COPYRIGHT ❤ RABBOT.IO'
   })
 
   return draw.jsx()

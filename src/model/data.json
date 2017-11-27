@@ -2,39 +2,84 @@
   "data": {
     "allDevices": [
       {
-        "min": 52.92702949006113,
+        "__typename": "Device",
+        "min": 58.55864400662716,
         "browserVersion": "61.0.3163.100",
         "browserName": "Chrome",
         "thread": 8,
-        "max": 63.00009717654856
+        "max": 93.62672459717832
       },
       {
-        "min": 36.342543590372195,
-        "browserVersion": "11.0",
-        "browserName": "Safari",
-        "thread": 4,
-        "max": 51.947982297122536
-      },
-      {
-        "min": 29.633794268542033,
-        "browserVersion": "56.0",
-        "browserName": "Firefox",
-        "thread": 4,
-        "max": 40.382999507978795
-      },
-      {
-        "min": 31.369946023459317,
-        "browserVersion": "56.0",
-        "browserName": "Firefox",
+        "__typename": "Device",
+        "min": 45.13173647700046,
+        "browserVersion": "61.0.3163.100",
+        "browserName": "Chrome",
         "thread": 8,
-        "max": 39.67566471796306
+        "max": 78.3538385660611
       },
       {
-        "min": 33.59862817781047,
-        "browserVersion": "11.0",
-        "browserName": "Safari",
+        "__typename": "Device",
+        "min": 52.9317211362506,
+        "browserVersion": "61.0.3163.100",
+        "browserName": "Chrome",
+        "thread": 8,
+        "max": 76.92271365342576
+      },
+      {
+        "__typename": "Device",
+        "min": 57.91805122293285,
+        "browserVersion": "61.0.3163.100",
+        "browserName": "Chrome",
         "thread": 6,
-        "max": 39.10329777481466
+        "max": 73.78680811863218
+      },
+      {
+        "__typename": "Device",
+        "min": 54.830219099232075,
+        "browserVersion": "62.0.3202.62",
+        "browserName": "Chrome",
+        "thread": 7,
+        "max": 73.63107249981555
+      },
+      {
+        "__typename": "Device",
+        "min": 63.71423399839487,
+        "browserVersion": "16.16299",
+        "browserName": "Edge",
+        "thread": 5,
+        "max": 72.85334321919612
+      },
+      {
+        "__typename": "Device",
+        "min": 53.21823046869293,
+        "browserVersion": "16.16299",
+        "browserName": "Edge",
+        "thread": 7,
+        "max": 72.53211305252648
+      },
+      {
+        "__typename": "Device",
+        "min": 46.65792627936253,
+        "browserVersion": "61.0.3163.100",
+        "browserName": "Chrome",
+        "thread": 8,
+        "max": 66.93857531492498
+      },
+      {
+        "__typename": "Device",
+        "min": 44.4865490130497,
+        "browserVersion": "58.0",
+        "browserName": "Firefox",
+        "thread": 7,
+        "max": 63.94407564548902
+      },
+      {
+        "__typename": "Device",
+        "min": 36.94992960874414,
+        "browserVersion": "61.0.3163.100",
+        "browserName": "Chrome",
+        "thread": 8,
+        "max": 63.24159429621806
       }
     ]
   }
