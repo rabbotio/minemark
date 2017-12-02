@@ -1,40 +1,22 @@
 # coin-hive-mining-benchmark
-CoinHive Mining Benchmark
+CoinHive Mining Benchmark  
+https://rabbot.io/minemark/
 
 ```shell
 yarn install
 yarn start
 ```
 
-## TODO
-- [x] Animation
-- [x] Console log animation
-- [x] Capture
-- [x] GraphCool read
-- [x] GraphCool write
-- [x] Sharer https://simplesharingbuttons.com
-- [x] Add og tag
-- [x] Download button
-- [x] Google Analytics
-- [x] Default og:image http://ogp.me/
-- [x] Icons
-- [x] About
-- [x] Server
-- [x] Use path /minemark
-
 ## TOFIX
-- [x] Mobile Safari not load
-- [x] Firefox not load
-- [x] Edge not load
-- [ ] IE not load
+- [ ] IE not load ;p
 
 ## TOTEST
 - [x] Share on Facebook 476 x 249
 - [x] Share on Twitter 506 x 254
 - [ ] Share on iOS
-- [x] Save on iOS
 - [ ] Share on Android
 - [ ] Save on Android
+- [ ] SEO
 
 ## TOHAVE : Unique Share
 - [x] Share Facebook
