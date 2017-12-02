@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "dotenv": "^4.0.0",
-    "isomorphic-fetch": "^2.2.1",
-    "oauth": "^0.9.15"
+    "isomorphic-fetch": "^2.2.1"
   }
 }
