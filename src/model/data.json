@@ -3,83 +3,83 @@
     "allDevices": [
       {
         "__typename": "Device",
-        "min": 58.55864400662716,
-        "browserVersion": "61.0.3163.100",
-        "browserName": "Chrome",
-        "thread": 8,
-        "max": 93.62672459717832
-      },
-      {
-        "__typename": "Device",
-        "min": 45.13173647700046,
-        "browserVersion": "61.0.3163.100",
-        "browserName": "Chrome",
-        "thread": 8,
-        "max": 78.3538385660611
-      },
-      {
-        "__typename": "Device",
-        "min": 52.9317211362506,
-        "browserVersion": "61.0.3163.100",
-        "browserName": "Chrome",
-        "thread": 8,
-        "max": 76.92271365342576
-      },
-      {
-        "__typename": "Device",
-        "min": 57.91805122293285,
-        "browserVersion": "61.0.3163.100",
-        "browserName": "Chrome",
-        "thread": 6,
-        "max": 73.78680811863218
-      },
-      {
-        "__typename": "Device",
-        "min": 54.830219099232075,
-        "browserVersion": "62.0.3202.62",
-        "browserName": "Chrome",
-        "thread": 7,
-        "max": 73.63107249981555
-      },
-      {
-        "__typename": "Device",
-        "min": 63.71423399839487,
-        "browserVersion": "16.16299",
-        "browserName": "Edge",
-        "thread": 5,
-        "max": 72.85334321919612
-      },
-      {
-        "__typename": "Device",
-        "min": 53.21823046869293,
-        "browserVersion": "16.16299",
-        "browserName": "Edge",
-        "thread": 7,
-        "max": 72.53211305252648
-      },
-      {
-        "__typename": "Device",
-        "min": 46.65792627936253,
-        "browserVersion": "61.0.3163.100",
-        "browserName": "Chrome",
-        "thread": 8,
-        "max": 66.93857531492498
-      },
-      {
-        "__typename": "Device",
-        "min": 44.4865490130497,
+        "min": 119.83354277942927,
         "browserVersion": "58.0",
         "browserName": "Firefox",
-        "thread": 7,
-        "max": 63.94407564548902
+        "thread": 10,
+        "max": 161.67296062891006
       },
       {
         "__typename": "Device",
-        "min": 36.94992960874414,
-        "browserVersion": "61.0.3163.100",
-        "browserName": "Chrome",
+        "min": 116.27096852203347,
+        "browserVersion": "11.1.1",
+        "browserName": "Safari",
         "thread": 8,
-        "max": 63.24159429621806
+        "max": 152.4626231623003
+      },
+      {
+        "__typename": "Device",
+        "min": 114.30813993352925,
+        "browserVersion": "11.1.1",
+        "browserName": "Safari",
+        "thread": 8,
+        "max": 150.05330964485486
+      },
+      {
+        "__typename": "Device",
+        "min": 108.47083315815553,
+        "browserVersion": "58.0",
+        "browserName": "Firefox",
+        "thread": 11,
+        "max": 145.59354353374133
+      },
+      {
+        "__typename": "Device",
+        "min": 84.74567539257774,
+        "browserVersion": "58.0",
+        "browserName": "Firefox",
+        "thread": 15,
+        "max": 134.04942570096395
+      },
+      {
+        "__typename": "Device",
+        "min": 77.17344586842287,
+        "browserVersion": "63.0.3239.84",
+        "browserName": "Chrome",
+        "thread": 16,
+        "max": 122.86427731410213
+      },
+      {
+        "__typename": "Device",
+        "min": 77.22311868196692,
+        "browserVersion": "64.0.3282.186",
+        "browserName": "Chrome",
+        "thread": 16,
+        "max": 117.49750524374251
+      },
+      {
+        "__typename": "Device",
+        "min": 98.46951858846698,
+        "browserVersion": "58.0",
+        "browserName": "Firefox",
+        "thread": 8,
+        "max": 114.7277210856153
+      },
+      {
+        "__typename": "Device",
+        "min": 80.57665330843379,
+        "browserVersion": "57.0",
+        "browserName": "Firefox",
+        "thread": 6,
+        "max": 102.26074621326572
+      },
+      {
+        "__typename": "Device",
+        "min": 76.41651683973846,
+        "browserVersion": "57.0",
+        "browserName": "Firefox",
+        "thread": 7,
+        "max": 95.14663021476366
       }
     ]
   }

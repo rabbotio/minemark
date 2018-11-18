@@ -18,10 +18,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import styled from 'styled-components'
 import { icon_email } from '../styles/icons'
 
-// Click handler
-import injectTapEventPlugin from 'react-tap-event-plugin'
-injectTapEventPlugin()
-
 const Formz = styled.form`
   padding-bottom: 10vh;
 `
