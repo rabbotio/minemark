@@ -91,21 +91,6 @@ class CoinHiveClient extends Component {
   }
 }
 
-CoinHiveClient.PropTypes = {
-  siteKey: PropTypes.string.isRequired,
-  timeout: PropTypes.number,
-  onInit: PropTypes.func,
-  onStart: PropTypes.func,
-  onStop: PropTypes.func,
-  onOpen: PropTypes.func,
-  onClose: PropTypes.func,
-  onError: PropTypes.func,
-  onJob: PropTypes.func,
-  onAuthed: PropTypes.func,
-  onFound: PropTypes.func,
-  onAccepted: PropTypes.func,
-  userName: PropTypes.string,
-  status: PropTypes.string
-}
+
 
 export default CoinHiveClient

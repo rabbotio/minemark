@@ -83,9 +83,13 @@ class Subscription extends Component {
         trackEvent('subscribe.failed', { email, err })
         trackException(err)
 
-        if (err.message === 'GraphQL error: A unique constraint would be violated on User. Details: Field name = email') {
+        if (
+          err.message === 'GraphQL error: A unique constraint would be violated on User. Details: Field name = email'
+        ) {
           alert(`Sorry! ${email} has been use.`)
         }
+
+        console.log(err)
       })
   }
 
@@ -93,7 +97,11 @@ class Subscription extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <Formz onSubmit={this.onSubmit}>
-          <TextField ref='email' underlineStyle={{ borderColor: blue500 }} floatingLabelText=' Fill email here, I will keep you post.' />
+          <TextField
+            ref='email'
+            underlineStyle={{ borderColor: blue500 }}
+            floatingLabelText=' Fill email here, I will keep you post.'
+          />
           <br />
           <Buttonz type='submit'>
             {icon_email}
