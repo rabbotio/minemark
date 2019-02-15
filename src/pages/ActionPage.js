@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 // Library
 import is from 'is_js'
-import { gql } from 'react-apollo'
+import gql from 'graphql-tag'
 import { trackScreen, trackEvent, trackException } from '../lib/analytics'
 
 import { Buttonz } from '../styles/buttons'

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 // Library
 import is from 'is_js'
-import { gql } from 'react-apollo'
+import gql from 'graphql-tag'
 import { Buttonz } from '../styles/buttons'
 import { trackEvent, trackException } from '../lib/analytics'
 
@@ -59,17 +59,19 @@ class Subscription extends Component {
     const { id, uuid } = this.persistanceData
     trackEvent('subscribe.succeed', { id, uuid, email })
 
+    const mutation = gql`mutation createUser {
+      createUser(
+        email: "${email}"
+      ) {
+        id
+        email
+        emailVerified
+      }
+    }`
+
     this.props.client
       .mutate({
-        mutation: gql`mutation createUser {
-        createUser(
-          email: "${email}"
-        ) {
-          id
-          email
-          emailVerified
-        }
-      }`
+        mutation
       })
       .then(({ id, email, emailVerified }) => {
         trackEvent('subscribe.succeed', { id, email, emailVerified })
